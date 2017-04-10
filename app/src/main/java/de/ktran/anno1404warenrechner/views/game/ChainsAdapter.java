@@ -1,12 +1,11 @@
 package de.ktran.anno1404warenrechner.views.game;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ import butterknife.ButterKnife;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
-import de.ktran.anno1404warenrechner.data.ProductionBuilding;
 import de.ktran.anno1404warenrechner.data.ProductionChain;
 import de.ktran.anno1404warenrechner.event.ChainsResultEvent;
 import de.ktran.anno1404warenrechner.views.HasLifecycle;
@@ -133,7 +130,8 @@ public class ChainsAdapter extends RecyclerView.Adapter<ChainsAdapter.ViewHolder
             holder.parent.setOnClickListener(v -> gameActivity.toChainsDetail(chain, v));
             ViewCompat.setTransitionName(holder.parent, chain.getBuilding().name());
         } else {
-            holder.parent.setOnClickListener(v -> Toast.makeText(gameActivity, gameActivity.getString(R.string.hint_chain), Toast.LENGTH_SHORT).show());
+
+            holder.parent.setOnClickListener(v -> Snackbar.make(v, R.string.hint_chain, BaseTransientBottomBar.LENGTH_SHORT).show());
         }
     }
 

@@ -6,6 +6,7 @@ import de.ktran.anno1404warenrechner.views.game.ChainsDetailFragment;
 import de.ktran.anno1404warenrechner.views.game.ChainsFragment;
 import de.ktran.anno1404warenrechner.views.game.GameActivity;
 import de.ktran.anno1404warenrechner.views.game.GameOverviewFragment;
+import de.ktran.anno1404warenrechner.views.game.GameSettingsFragment;
 import de.ktran.anno1404warenrechner.views.game.PopulationFragment;
 
 @PerActivity
@@ -23,4 +24,5 @@ public interface GameActivityComponent {
     void inject(ChainsFragment fragment);
     void inject(GameOverviewFragment fragment);
     void inject(ChainsDetailFragment fragment);
+    void inject(GameSettingsFragment fragment);
 }

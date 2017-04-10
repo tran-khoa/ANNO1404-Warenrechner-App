@@ -1,18 +1,16 @@
 package de.ktran.anno1404warenrechner.views.game;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AlertDialog;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.sbgapps.simplenumberpicker.decimal.DecimalPickerHandler;
@@ -22,7 +20,6 @@ import org.greenrobot.eventbus.EventBus;
 import javax.inject.Inject;
 
 import de.ktran.anno1404warenrechner.App;
-import de.ktran.anno1404warenrechner.AppModule;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
@@ -93,14 +90,17 @@ public class GameActivity extends BaseActivity implements DecimalPickerHandler {
     public void toChainsDetail(ProductionChain chain, View origin) {
         final ChainsDetailFragment detailFragment = new ChainsDetailFragment();
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Slide slide = new Slide(Gravity.END);
             slide.setDuration(333);
             detailFragment.setEnterTransition(slide);
             detailFragment.setExitTransition(slide);
 
+            overviewFragment.setExitTransition(new Fade());
+
             Transition t = TransitionInflater.from(this).inflateTransition(android.R.transition.move);
             detailFragment.setSharedElementEnterTransition(t);
+            detailFragment.setSharedElementReturnTransition(t);
         }
 
 
@@ -111,10 +111,27 @@ public class GameActivity extends BaseActivity implements DecimalPickerHandler {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .addSharedElement(origin, ViewCompat.getTransitionName(origin))
                 .replace(R.id.game_activity_parent, detailFragment)
-                .addToBackStack(null).commit();
+                .addToBackStack(null)
+                .addSharedElement(origin, ViewCompat.getTransitionName(origin))
+                .commit();
         getSupportFragmentManager().executePendingTransactions();
+    }
+
+    public void toSettings() {
+        final GameSettingsFragment fragment = new GameSettingsFragment();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final Slide slide = new Slide(Gravity.END);
+            slide.setDuration(333);
+            fragment.setEnterTransition(slide);
+            fragment.setExitTransition(slide);
+        }
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.game_activity_parent, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -141,26 +158,6 @@ public class GameActivity extends BaseActivity implements DecimalPickerHandler {
 
         final NumberDialog d = builder.create();
         d.show(getSupportFragmentManager(), "TAG_POP_DIALOG");
-    }
-
-    public void showNameEditDialog() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle(R.string.edit_dialog_title);
-
-        @SuppressLint("InflateParams") final View parent = LayoutInflater.from(this).inflate(
-                R.layout.edit_dialog, null, false
-        );
-        final EditText inputView = (EditText) parent.findViewById(R.id.game_dialog_edit_name);
-        dialog.setView(parent);
-
-        dialog.setPositiveButton(android.R.string.yes, (dialog1, which) -> {
-            final String input = inputView.getText().toString();
-            dataManager.setGameTitle(game, input);
-        });
-
-        dialog.setNegativeButton(android.R.string.no, (dialog1, which) -> dialog1.dismiss());
-
-        dialog.show();
     }
 
     @Override

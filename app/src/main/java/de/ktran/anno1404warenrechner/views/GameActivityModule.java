@@ -2,18 +2,13 @@ package de.ktran.anno1404warenrechner.views;
 
 import org.greenrobot.eventbus.EventBus;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
-import de.ktran.anno1404warenrechner.data.ProductionBuilding;
 import de.ktran.anno1404warenrechner.views.game.ChainsAdapter;
 import de.ktran.anno1404warenrechner.views.game.ChainsDetailAdapter;
-import de.ktran.anno1404warenrechner.views.game.ChainsDetailFragment;
 import de.ktran.anno1404warenrechner.views.game.GameActivity;
-import de.ktran.anno1404warenrechner.views.game.GameSectionsPagerAdapter;
 import de.ktran.anno1404warenrechner.views.game.PopulationAdapter;
 
 @Module

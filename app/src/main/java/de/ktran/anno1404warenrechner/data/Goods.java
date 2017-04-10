@@ -9,72 +9,70 @@ import android.support.v4.content.ContextCompat;
 import de.ktran.anno1404warenrechner.R;
 
 public enum Goods {
-    INTERMEDIARY_HEMP("intermediary_hemp", R.drawable.intm_hemp, "Hanf"),
-    INTERMEDIARY_WHEAT("intermediary_wheat", R.drawable.intm_wheat, "Weizen"),
-    INTERMEDIARY_FLOUR("intermediary_flour", R.drawable.intm_flour, "Mehl"),
-    INTERMEDIARY_HERBS("intermediary_herbs", R.drawable.intm_herbs, "Kräuter"),
-    INTERMEDIARY_ALMOND("intermediary_almond", R.drawable.intm_almond, "Mandeln"),
-    INTERMEDIARY_GRAPES("intermediary_grapes", R.drawable.intm_grapes, "Trauben"),
-    INTERMEDIARY_BEESWAX("intermediary_beeswax", R.drawable.intm_beeswax, "Bienenwachs"),
-    INTERMEDIARY_COFFEE_BEAN("intermediary_coffee_bean", R.drawable.intm_coffeebean, "Kaffeebohnen"),
-    INTERMEDIARY_ROSE("intermediary_rose", R.drawable.intm_rose, "Rosen"),
-    INTERMEDIARY_SUGAR_CANE("intermediary_sugar_cane", R.drawable.intm_sugarcane, "Zuckerrohr"),
-    INTERMEDIARY_SUGAR("intermediary_sugar", R.drawable.intm_sugar, "Zucker"),
-    INTERMEDIARY_INDIGO("intermediary_indigo", R.drawable.intm_indigo, "Indigo"),
-    INTERMEDIARY_SILK("intermediary_silk", R.drawable.intm_silk, "Seide"),
-    INTERMEDIARY_COAL("intermediary_coal", R.drawable.intm_coal, "Kohle"),
-    INTERMEDIARY_BRINE("intermediary_brine", R.drawable.intm_brine, "Saline"),
-    INTERMEDIARY_SALT("intermediary_salt", R.drawable.intm_salt, "Salz"),
-    INTERMEDIARY_ANIMAL_HIDES("intermediary_animal_hides", R.drawable.intm_animal_hides, "Tierhäute"),
-    INTERMEDIARY_PAPER("intermediary_paper", R.drawable.intm_paper, "Papier"),
-    INTERMEDIARY_CANDLE("intermediary_candle", R.drawable.intm_candle, "Kerzen"),
-    INTERMEDIARY_BRASS("intermediary_brass", R.drawable.intm_brass, "Kupfer"),
-    INTERMEDIARY_COPPER_ORE("intermediary_copper_ore", R.drawable.intm_copper, "Kupfererz"),
-    INTERMEDIARY_CATTLE("intermediary_cattle", R.drawable.intm_cattle, "Rind"),
-    INTERMEDIARY_BARREL("intermediary_barrel", R.drawable.intm_barrel, "Fässer"),
-    INTERMEDIARY_IRON_ORE("intermediary_iron_ore", R.drawable.intm_iron_ore, "Eisenerz"),
-    INTERMEDIARY_IRON("intermediary_iron", R.drawable.intm_iron, "Eisen"),
-    INTERMEDIARY_QUARTZ("intermediary_quartz", R.drawable.intm_quartz, "Quarz"),
-    INTERMEDIARY_FUR("intermediary_fur", R.drawable.intm_fur, "Felle"),
-    INTERMEDIARY_GOLD_ORE("intermediary_gold_ore", R.drawable.intm_goldore, "Golderz"),
-    INTERMEDIARY_GOLD("intermediary_gold", R.drawable.intm_gold, "Gold"),
-    INTERMEDIARY_PEARL("intermediary_pearl", R.drawable.intm_pearl, "Perlen"),
+    INTERMEDIARY_HEMP(R.drawable.intm_hemp, R.string.intermediary_hemp),
+    INTERMEDIARY_WHEAT(R.drawable.intm_wheat, R.string.intermediary_wheat),
+    INTERMEDIARY_FLOUR(R.drawable.intm_flour, R.string.intermediary_flour),
+    INTERMEDIARY_HERBS(R.drawable.intm_herbs, R.string.intermediary_herbs),
+    INTERMEDIARY_ALMOND(R.drawable.intm_almond, R.string.intermediary_almond),
+    INTERMEDIARY_GRAPES(R.drawable.intm_grapes, R.string.intermediary_grapes),
+    INTERMEDIARY_BEESWAX(R.drawable.intm_beeswax, R.string.intermediary_beeswax),
+    INTERMEDIARY_COFFEE_BEAN(R.drawable.intm_coffeebean, R.string.intermediary_coffee_bean),
+    INTERMEDIARY_ROSE(R.drawable.intm_rose, R.string.intermediary_rose),
+    INTERMEDIARY_SUGAR_CANE(R.drawable.intm_sugarcane, R.string.intermediary_sugar_cane),
+    INTERMEDIARY_SUGAR(R.drawable.intm_sugar, R.string.intermediary_sugar),
+    INTERMEDIARY_INDIGO(R.drawable.intm_indigo, R.string.intermediary_indigo),
+    INTERMEDIARY_SILK(R.drawable.intm_silk, R.string.intermediary_silk),
+    INTERMEDIARY_COAL(R.drawable.intm_coal, R.string.intermediary_coal),
+    INTERMEDIARY_BRINE(R.drawable.intm_brine, R.string.intermediary_brine),
+    INTERMEDIARY_SALT(R.drawable.intm_salt, R.string.intermediary_salt),
+    INTERMEDIARY_ANIMAL_HIDES(R.drawable.intm_animal_hides, R.string.intermediary_animal_hides),
+    INTERMEDIARY_PAPER(R.drawable.intm_paper, R.string.intermediary_paper),
+    INTERMEDIARY_CANDLE(R.drawable.intm_candle, R.string.intermediary_candle),
+    INTERMEDIARY_BRASS(R.drawable.intm_brass, R.string.intermediary_brass),
+    INTERMEDIARY_COPPER_ORE(R.drawable.intm_copper, R.string.intermediary_copper_ore),
+    INTERMEDIARY_CATTLE(R.drawable.intm_cattle, R.string.intermediary_cattle),
+    INTERMEDIARY_BARREL(R.drawable.intm_barrel, R.string.intermediary_barrel),
+    INTERMEDIARY_IRON_ORE(R.drawable.intm_iron_ore, R.string.intermediary_iron_ore),
+    INTERMEDIARY_IRON(R.drawable.intm_iron, R.string.intermediary_iron),
+    INTERMEDIARY_QUARTZ(R.drawable.intm_quartz, R.string.intermediary_quartz),
+    INTERMEDIARY_FUR(R.drawable.intm_fur, R.string.intermediary_fur),
+    INTERMEDIARY_GOLD_ORE(R.drawable.intm_goldore, R.string.intermediary_gold_ore),
+    INTERMEDIARY_GOLD(R.drawable.intm_gold, R.string.intermediary_gold),
+    INTERMEDIARY_PEARL(R.drawable.intm_pearl, R.string.intermediary_pearl),
 
 
-    BUILDING_WOOD("building_wood", R.drawable.intm_wood, "Holz"),
+    BUILDING_WOOD(R.drawable.intm_wood, R.string.building_wood),
 
-    FOOD_DATE("food_date", R.drawable.chain_date, "Datteln"),
-    DRINK_MILK("drink_milk", R.drawable.chain_milk, "Milch"),
-    POSSESSION_CARPET("possession_carpet", R.drawable.chain_carpet, "Teppich"),
-    DRINK_COFFEE("drink_coffee", R.drawable.chain_coffee, "Kaffee"),
-    POSSESSION_PEARL_NECKLACES("possession_pearl_workshop", R.drawable.chain_pearl_necklace, "Perlenketten"),
-    POSSESSION_PERFUME("possession_perfume", R.drawable.chain_perfume, "Parfüm"),
-    FOOD_MARZIPAN("food_marzipan", R.drawable.chain_marzipan, "Marzipan"),
+    FOOD_DATE(R.drawable.chain_date, R.string.food_date),
+    DRINK_MILK(R.drawable.chain_milk, R.string.drink_milk),
+    POSSESSION_CARPET(R.drawable.chain_carpet, R.string.possession_carpet),
+    DRINK_COFFEE(R.drawable.chain_coffee, R.string.drink_coffee),
+    POSSESSION_PEARL_NECKLACES(R.drawable.chain_pearl_necklace, R.string.possession_pearl_necklace),
+    POSSESSION_PERFUME(R.drawable.chain_perfume, R.string.intermediary_perfume),
+    FOOD_MARZIPAN(R.drawable.chain_marzipan, R.string.food_marzipan),
 
 
-    FOOD_FISH("food_fish", R.drawable.chain_fish, "Fisch"),
-    DRINK_CIDER("drink_cider", R.drawable.chain_cider, "Most"),
-    CLOTHING_LINEN("clothing_linen", R.drawable.chain_linen, "Leinenkutten"),
-    FOOD_SPICES("food_spices", R.drawable.chain_spices, "Gewürze"),
-    FOOD_BREAD("food_bread", R.drawable.chain_bread, "Brot"),
-    DRINK_BEER("drink_beer", R.drawable.chain_beer, "Bier"),
-    CLOTHING_LEATHER_JERKINS("clothing_leather", R.drawable.chain_leather, "Lederwämse"),
-    POSSESSION_BOOKS("pos_books", R.drawable.chain_book, "Bücher"),
-    POSSESSION_CANDLESTICKS("pos_candlesticks", R.drawable.chain_candlesticks, "Kerzenleuchter"),
-    FOOD_MEAT("food_meat", R.drawable.chain_meat, "Fleisch"),
-    DRINK_WINE("drink_wine", R.drawable.chain_wine, "Wein"),
-    CLOTHING_FUR_COATS("clothing_fur_coats", R.drawable.chain_fur_coat, "Pelzmäntel"),
-    CLOTHING_BROCADE_ROBE("clothing_brocade_robe", R.drawable.chain_brocade, "Brokatgewänder"),
-    POSSESSION_GLASSES("pos_glasses", R.drawable.chain_glasses, "Brillengläser");
+    FOOD_FISH(R.drawable.chain_fish, R.string.food_fish),
+    DRINK_CIDER(R.drawable.chain_cider, R.string.drink_cider),
+    CLOTHING_LINEN(R.drawable.chain_linen, R.string.clothing_linen),
+    FOOD_SPICES(R.drawable.chain_spices, R.string.food_spices),
+    FOOD_BREAD(R.drawable.chain_bread, R.string.food_bread),
+    DRINK_BEER(R.drawable.chain_beer, R.string.drink_beer),
+    CLOTHING_LEATHER_JERKINS(R.drawable.chain_leather, R.string.clothing_leather_jerkins),
+    POSSESSION_BOOKS(R.drawable.chain_book, R.string.pos_books),
+    POSSESSION_CANDLESTICKS(R.drawable.chain_candlesticks, R.string.pos_candlesticks),
+    FOOD_MEAT(R.drawable.chain_meat, R.string.food_meat),
+    DRINK_WINE(R.drawable.chain_wine, R.string.drink_wine),
+    CLOTHING_FUR_COATS(R.drawable.chain_fur_coat, R.string.clothing_fur_coats),
+    CLOTHING_BROCADE_ROBE(R.drawable.chain_brocade, R.string.clothing_brocade_robe),
+    POSSESSION_GLASSES(R.drawable.chain_glasses, R.string.pos_glasses);
 
-    public final String id;
     private final int drawableId;
-    private final String name;
+    private final int stringId;
 
-    Goods(String id, int drawableId, String name) {
-        this.id = id;
+    Goods(int drawableId, int stringId) {
         this.drawableId = drawableId;
-        this.name = name;
+        this.stringId = stringId;
     }
 
     public Drawable getDrawable(Context context) {
@@ -92,7 +90,7 @@ public enum Goods {
         throw new UnsupportedOperationException();
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return context.getString(stringId);
     }
 }

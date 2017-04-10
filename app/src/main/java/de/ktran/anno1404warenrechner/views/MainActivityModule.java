@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import de.ktran.anno1404warenrechner.data.DataManager;

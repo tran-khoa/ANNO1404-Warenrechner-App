@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -110,11 +109,25 @@ public class DataManager {
         }
     }
 
+    public void setBeggarPrince(Game game, int rank) {
+        if (rank == game.getBeggarPrince()) return;
+
+        game.setBeggarPrince(rank);
+        onGameDataChanged(game);
+    }
+
+    public void setEnvoysFavour(Game game, int rank) {
+        if (rank == game.getEnvoysFavour()) return;
+
+        game.setEnvoysFavour(rank);
+        onGameDataChanged(game);
+    }
+
     public void createGame() {
         last_id = last_id + 1;
 
         games.add(
-                Game.newGame(last_id, MessageFormat.format("Spiel {0}", last_id))
+                Game.newGame(last_id, app.getString(R.string.generic_game_title, last_id))
         );
         commitChanges();
         onGameMetaDataChanged();

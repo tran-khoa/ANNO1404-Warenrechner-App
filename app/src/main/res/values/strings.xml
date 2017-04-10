@@ -1,30 +1,97 @@
 <resources>
-    <string name="app_name">Anno 1404 - Warenrechner</string>
-    <string name="title_activity_main">Anno 1404 - Rechner</string>
-    <string name="filter_title">MainActivity</string>
+    <string name="app_name">ANNO 1404 - Calculator</string>
+    <string name="title_activity_main" translatable="false">@string/app_name</string>
+    <string name="filter_title" translatable="false">MainActivity</string>
 
-    <string name="prefkey_data">app_data</string>
-    <string name="input_hint_game_new" />
-    <string name="title_activity_game">Anzeigefehler</string>
+    <string name="prefkey_data" translatable="false">app_data</string>
+    <string name="title_activity_game">Display error</string>
     <string name="action_settings">Settings</string>
 
-    <string name="pop_beggars">Bettler</string>
-    <string name="pop_peasants">Bauern</string>
-    <string name="pop_citizens">Bürger</string>
-    <string name="pop_patrician">Patrizier</string>
-    <string name="pop_noblemen">Adlige</string>
-    <string name="pop_nomads">Nomaden</string>
-    <string name="pop_envoys">Gesandte</string>
-    <string name="remove">Entfernen</string>
-    <string name="background">Hintergrund</string>
-    <string name="no_desc">Keine Beschreibung</string>
-    <string name="edit_name">Name des Spiels ändern</string>
-    <string name="edit_dialog_title">Neuen Titel eingeben</string>
-    <string name="population">Bevölkerung</string>
-    <string name="consumption">Verbrauch</string>
-    <string name="production_chain_title">%1$s - Produktionskette</string>
-    <string name="hint_chain">Diese Ware wird noch nicht benötigt.</string>
-    <string name="pop_total">Insgesamt (ohne Bettler)</string>
-    <string name="pop_total_occidental">Okzident insges.</string>
-    <string name="pop_total_oriental">Orient insges.</string>
+    <string name="generic_game_title">Game %1$d</string>
+
+    <string name="attn_beggar_prince">Beggar Prince</string>
+    <string name="attn_envoys_favour">The Envoys\' Favour</string>
+
+    <string name="pop_beggars">Beggars</string>
+    <string name="pop_peasants">Peasants</string>
+    <string name="pop_citizens">Citizens</string>
+    <string name="pop_patrician">Patricians</string>
+    <string name="pop_noblemen">Noblemen</string>
+    <string name="pop_nomads">Nomads</string>
+    <string name="pop_envoys">Envoys</string>
+    <string name="background" translatable="false">bg</string>
+    <string name="no_desc">no description</string>
+    <string name="population">Population</string>
+    <string name="consumption">Consumption</string>
+    <string name="production_chain_title">%1$s - Production chain</string>
+    <string name="hint_chain">This good is not required yet.</string>
+    <string name="pop_total_occidental">Total occidental</string>
+    <string name="pop_total_oriental">Total oriental</string>
+    <string name="intermediary_hemp">Hemp</string>
+    <string name="intermediary_wheat">Wheat</string>
+    <string name="intermediary_flour">Flour</string>
+    <string name="intermediary_herbs">Herbs</string>
+    <string name="intermediary_almond">Almond</string>
+    <string name="intermediary_grapes">Grapes</string>
+    <string name="intermediary_beeswax">Beeswax</string>
+    <string name="intermediary_coffee_bean">Coffee beans</string>
+    <string name="intermediary_rose">Roses</string>
+    <string name="intermediary_sugar_cane">Sugar canes</string>
+    <string name="intermediary_sugar">Sugar</string>
+    <string name="intermediary_indigo">Indigo</string>
+    <string name="intermediary_silk">Silk</string>
+    <string name="intermediary_coal">Coal</string>
+    <string name="intermediary_brine">Brine</string>
+    <string name="intermediary_salt">Salt</string>
+    <string name="intermediary_animal_hides">Animal hides</string>
+    <string name="intermediary_paper">Paper</string>
+    <string name="intermediary_candle">Candles</string>
+    <string name="intermediary_brass">Brass</string>
+    <string name="intermediary_copper_ore">Copper ore</string>
+    <string name="intermediary_cattle">Cattle</string>
+    <string name="intermediary_barrel">Barrels</string>
+    <string name="intermediary_iron_ore">Iron ore</string>
+    <string name="intermediary_iron">Iron</string>
+    <string name="intermediary_quartz">Quartz</string>
+    <string name="intermediary_fur">Fur</string>
+    <string name="intermediary_gold_ore">Gold ore</string>
+    <string name="intermediary_gold">Gold</string>
+    <string name="intermediary_pearl">Pearls</string>
+    <string name="building_wood">Wood</string>
+    <string name="food_date">Dates</string>
+    <string name="drink_milk">Milk</string>
+    <string name="possession_carpet">Carpets</string>
+    <string name="drink_coffee">Coffee</string>
+    <string name="possession_pearl_necklace">Pearl necklaces</string>
+    <string name="intermediary_perfume">Perfume</string>
+    <string name="food_marzipan">Marzipan</string>
+    <string name="food_fish">Fish</string>
+    <string name="drink_cider">Cider</string>
+    <string name="clothing_linen">Linen garments</string>
+    <string name="food_spices">Spices</string>
+    <string name="food_bread">Bread</string>
+    <string name="drink_beer">Beer</string>
+    <string name="clothing_leather_jerkins">Leather jerkins</string>
+    <string name="pos_books">Books</string>
+    <string name="pos_candlesticks">Candlesticks</string>
+    <string name="food_meat">Meat</string>
+    <string name="drink_wine">Wine</string>
+    <string name="clothing_fur_coats">Fur coats</string>
+    <string name="clothing_brocade_robe">Brocade robes</string>
+    <string name="pos_glasses">Glasses</string>
+    <string name="fragment_settings_title">Settings</string>
+    <string name="prefkey_title" translatable="false">KEY_GAMETITLE</string>
+    <string name="pref_title">Game title</string>
+    <string name="prefkey_delete" translatable="false">KEY_GAME_DELETE</string>
+    <string name="pref_delete">Remove game</string>
+    <string name="pref_category_meta">Common</string>
+    <string name="pref_category_attainments">Attainments</string>
+    <string name="prefkey_beggar_prince" translatable="false">KEY_BEGGAR_PRINCE</string>
+    <string name="prefkey_envoys_favour" translatable="false">KEY_ENVOYS_FAVOUR</string>
+    <string name="deleting_game">Deleting game</string>
+    <string name="deleting_game_desc">Are you sure? All data for \"%1$s\" will be deleted permanently.</string>
+    <string name="rank1">Rank 1</string>
+    <string name="rank2">Rank 2</string>
+    <string name="rank3">Rank 3</string>
+    <string name="not_attained">Not attained</string>
 </resources>

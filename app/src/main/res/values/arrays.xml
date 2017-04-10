@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="bonus">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="bonus" tools:ignore="MissingTranslation">
         <item>+0%</item>
         <item>+25%</item>
         <item>+50%</item>
         <item>+75%</item>
+    </string-array>
+
+    <string-array name="attainment_rank">
+        <item>@string/not_attained</item>
+        <item>@string/rank1</item>
+        <item>@string/rank2</item>
+        <item>@string/rank3</item>
     </string-array>
 </resources>

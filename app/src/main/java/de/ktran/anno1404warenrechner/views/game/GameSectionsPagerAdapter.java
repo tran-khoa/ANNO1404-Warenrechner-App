@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import de.ktran.anno1404warenrechner.R;
+import de.ktran.anno1404warenrechner.data.Game;
 
 public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -38,9 +39,9 @@ public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(final int position) {
         switch (position) {
             case 0:
-                return context.getString(R.string.population);
+                return context.getString(R.string.population).toUpperCase();
             case 1:
-                return context.getString(R.string.consumption);
+                return context.getString(R.string.consumption).toUpperCase();
         }
 
         throw new UnsupportedOperationException();

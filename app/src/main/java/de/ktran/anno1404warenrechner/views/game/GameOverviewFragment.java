@@ -87,20 +87,14 @@ public class GameOverviewFragment extends GameFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
         inflater.inflate(R.menu.menu_game, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_remove:
-                dataManager.removeGame(game.getId());
-                gameActivity.finish();
-                return true;
-            case R.id.action_edit_text:
-                gameActivity.showNameEditDialog();
+            case R.id.action_settings:
+                gameActivity.toSettings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

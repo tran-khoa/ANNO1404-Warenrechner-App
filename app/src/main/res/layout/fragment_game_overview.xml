@@ -28,6 +28,7 @@
             android:id="@+id/game_overview_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/appTabLayout"
             app:tabMode="fixed"
             app:tabGravity="fill">
 

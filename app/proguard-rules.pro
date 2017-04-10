@@ -24,11 +24,31 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-dontobfuscate
+-optimizationpasses 5
+-allowaccessmodification
+-dontpreverify
+
+# MaterialPreferences
+-keep class rikka.materialpreference.*** { *; }
+-keep class rikka.materialpreference.PreferenceInflater.*** { *; }
+-keep class rikka.materialpreference.SimpleMenuPreference
+-keep class rikka.materialpreference.SimpleMenuPreference.*** { *; }
+-keep class android.preference.EditTextPreference
+-keep class android.preference.EditTextPreference.***
+-keep class android.preference.Preference.***
+-keep class android.preference.Preference
+-keep class android.preference.PreferenceScreen
+-keep class android.preference.PreferenceScreen.***
+-keep class android.preference.PreferenceCategory.***
+-keep class android.preference.PreferenceCategory
+-keep class android.preference.*** {*;}
+
 # Retrolambda
 -dontwarn java.lang.invoke.*
 
 # Dagger
--ignorewarnings dagger.android.DispatchingAndroidInjector
+-dontwarn dagger.android.**
 
 # ButterKnife 7
 -keep class butterknife.** { *; }

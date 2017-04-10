@@ -21,12 +21,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.ktran.anno1404warenrechner.R;
-import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
-import de.ktran.anno1404warenrechner.data.Goods;
 import de.ktran.anno1404warenrechner.data.Population;
 import de.ktran.anno1404warenrechner.event.PopulationResultEvent;
-import de.ktran.anno1404warenrechner.helpers.DisplayHelper;
 import de.ktran.anno1404warenrechner.views.HasLifecycle;
 
 public class PopulationAdapter extends RecyclerView.Adapter<PopulationAdapter.ViewHolder> implements HasLifecycle {

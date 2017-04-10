@@ -1,7 +1,6 @@
 package de.ktran.anno1404warenrechner.views.game;
 
 import android.animation.Animator;
-import android.icu.text.MessageFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,14 +18,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -115,7 +111,7 @@ public class ChainsDetailFragment extends GameFragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(game.getName());
             actionBar.setSubtitle(gameActivity.getString(R.string.production_chain_title,
-                    chain.getBuilding().getProduces().getName()));
+                    chain.getBuilding().getProduces().getName(getContext())));
         }
         registerLifecycle(adapter);
         chainsRV.setLayoutManager(new LinearLayoutManager(gameActivity));

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="3dp"
-    tools:gameActivity="de.ktran.anno1404warenrechner.views.main.MainActivity">
+    tools:gameActivity="de.ktran.anno1404warenrechner.views.game.GameActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:layout_marginTop="24dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -23,25 +24,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
+        android:id="@+id/prefs"
+        android:orientation="vertical"
         android:background="@color/material_white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include
-            android:id="@+id/chainsAnimationPlaceholder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            layout="@layout/chains_item" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/chainsList"
-            android:alpha="0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </FrameLayout>
-
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

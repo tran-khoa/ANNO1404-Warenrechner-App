@@ -102,13 +102,13 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
         holder.mClick.setOnClickListener(v -> GameActivity.startActivity(activity, game.getId()));
 
         holder.mName.setText(game.getName());
-        holder.mDate.setText(new SimpleDateFormat("dd. MMMM yyyy - HH:mm", Locale.GERMANY).format(game.getDate()));
+        holder.mDate.setText(new SimpleDateFormat("dd. MMMM yyyy - HH:mm", Locale.getDefault()).format(game.getDate()));
         holder.mPopCount.setText(String.valueOf(game.getPopCount()));
 
         holder.mBackground.setImageResource(getDrawableByCiv(game));
 
         holder.mPopType.removeAllViews();
-        final int dimens = DisplayHelper.dpToPx(activity.getResources().getDisplayMetrics(), 15);
+        final int dimens = DisplayHelper.dpToPx(activity, 15);
         for (Population p : game.getHighestCivs()) {
             final ImageView imageView = new ImageView(activity);
             imageView.setImageDrawable(p.getIcon(activity));

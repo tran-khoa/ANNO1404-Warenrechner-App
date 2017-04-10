@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/material_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="3dp"
     tools:gameActivity="de.ktran.anno1404warenrechner.views.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -24,6 +22,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
+        android:background="@color/material_white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

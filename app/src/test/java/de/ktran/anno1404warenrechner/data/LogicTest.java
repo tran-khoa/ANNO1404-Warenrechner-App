@@ -1,10 +1,7 @@
 package de.ktran.anno1404warenrechner.data;
 
-import android.util.Log;
-
 import org.junit.Test;
 
-import java.text.MessageFormat;
 import java.util.Map;
 
 import static org.junit.Assert.*;

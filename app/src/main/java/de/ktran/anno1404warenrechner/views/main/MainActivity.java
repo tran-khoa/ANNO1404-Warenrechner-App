@@ -11,7 +11,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import de.ktran.anno1404warenrechner.App;
-import de.ktran.anno1404warenrechner.AppModule;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.views.BaseActivity;

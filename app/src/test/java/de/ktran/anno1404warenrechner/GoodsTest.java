@@ -12,7 +12,7 @@ public class GoodsTest {
     @Test
     public void allGoodsProducible() throws Exception {
         for (Goods goods : Goods.values()) {
-            assertNotNull(MessageFormat.format("Production of {0} not possible.", goods.id), goods.getProductionBuilding());
+            assertNotNull(MessageFormat.format("Production of {0} not possible.", goods.name()), goods.getProductionBuilding());
         }
     }
 }

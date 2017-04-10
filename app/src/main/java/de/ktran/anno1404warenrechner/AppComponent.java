@@ -11,7 +11,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import de.ktran.anno1404warenrechner.data.DataManager;
-import de.ktran.anno1404warenrechner.views.PerActivity;
 
 @Singleton
 @Component(modules = AppModule.class)

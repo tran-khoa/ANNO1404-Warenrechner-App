@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/pref_category_meta">
+        <EditTextPreference
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:key="@string/prefkey_title"
+            android:paddingStart="16dp"
+            android:singleLine="true"
+            android:title="@string/pref_title" />
+
+        <Preference
+            android:icon="@drawable/delete_icon"
+            android:key="@string/prefkey_delete"
+            android:title="@string/pref_delete" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_category_attainments">
+        <rikka.materialpreference.SimpleMenuPreference
+            android:icon="@drawable/attn_beggarprince"
+            android:key="@string/prefkey_beggar_prince"
+            android:title="@string/attn_beggar_prince" />
+        <rikka.materialpreference.SimpleMenuPreference
+            android:icon="@drawable/attn_envoys_favour"
+            android:key="@string/prefkey_envoys_favour"
+            android:title="@string/attn_envoys_favour" />
+    </PreferenceCategory>
+</PreferenceScreen>

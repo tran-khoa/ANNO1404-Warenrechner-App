@@ -1,11 +1,11 @@
 <resources>
 
-    <style name="AppThemsse" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,13 +17,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="spinnerItemStyle">
-        <item name="android:textColor">@color/material_grey500</item>
-        <item name="android:gravity">center</item>
+    <style name="appTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/appTabLayoutText</item>
     </style>
 
-    <style name="spinnerDropDownItemStyle">
+    <style name="appTabLayoutText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
         <item name="android:gravity">center</item>
+        <item name="android:height">20dp</item>
+        <item name="android:layout_height">20dp</item>
     </style>
 
 </resources>
