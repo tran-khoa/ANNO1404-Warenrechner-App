@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/populationItem"
+    android:background="@color/material_amber700"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <RelativeLayout
+        android:id="@+id/populationItemClick"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <FrameLayout
+            android:layout_marginStart="16dp"
+            android:id="@+id/populationItemIconWrapper"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_bg"
+            android:gravity="center"
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:contentDescription="@string/no_desc"
+                android:id="@+id/populationItemIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitEnd"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_beggars" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/populationItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/material_white"
+            android:textSize="24sp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/populationItemIconWrapper"
+            android:layout_marginStart="16dp"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/populationItemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/material_white"
+            android:textSize="34sp" />
+
+        <ImageView
+            android:id="@+id/populationItemHouseCountIcon"
+            android:layout_width="20dp"
+            android:contentDescription="@string/no_desc"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/populationItemHouseCount"
+            android:layout_toStartOf="@+id/populationItemHouseCount"
+            android:src="@drawable/ic_buildings" />
+
+        <TextView
+            android:id="@+id/populationItemHouseCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/material_white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</FrameLayout>

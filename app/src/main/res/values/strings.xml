@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Anno 1404 - Warenrechner</string>
+    <string name="title_activity_main">Anno 1404 - Rechner</string>
+    <string name="filter_title">MainActivity</string>
+
+    <string name="prefkey_data">app_data</string>
+    <string name="input_hint_game_new" />
+    <string name="title_activity_game">Anzeigefehler</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="pop_beggars">Bettler</string>
+    <string name="pop_peasants">Bauern</string>
+    <string name="pop_citizens">Bürger</string>
+    <string name="pop_patrician">Patrizier</string>
+    <string name="pop_noblemen">Adlige</string>
+    <string name="pop_nomads">Nomaden</string>
+    <string name="pop_envoys">Gesandte</string>
+    <string name="remove">Entfernen</string>
+    <string name="background">Hintergrund</string>
+    <string name="no_desc">Keine Beschreibung</string>
+    <string name="edit_name">Name des Spiels ändern</string>
+    <string name="edit_dialog_title">Neuen Titel eingeben</string>
+    <string name="population">Bevölkerung</string>
+    <string name="consumption">Verbrauch</string>
+    <string name="production_chain_title">%1$s - Produktionskette</string>
+    <string name="hint_chain">Diese Ware wird noch nicht benötigt.</string>
+    <string name="pop_total">Insgesamt (ohne Bettler)</string>
+    <string name="pop_total_occidental">Okzident insges.</string>
+    <string name="pop_total_oriental">Orient insges.</string>
+</resources>

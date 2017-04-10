@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/game_item"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="@dimen/md_elevation_app_bar"
+        card_view:cardUseCompatPadding="true"
+        tools:ignore="RtlSymmetry">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/game_list_item_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/background"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#EEFFFFFF"
+            android:orientation="vertical"
+            android:paddingBottom="9dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="9dp">
+
+            <TextView
+                android:id="@+id/game_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/game_item_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/game_item_name"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/game_item_popcount"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/game_item_popcount"
+                android:contentDescription="@string/no_desc"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_pop" />
+
+            <TextView
+                android:id="@+id/game_item_popcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/game_item_poptype_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/game_item_popcount"
+                android:layout_below="@id/game_item_popcount"
+                android:gravity="end"
+                android:orientation="horizontal" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/game_item_click"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true" />
+
+    </android.support.v7.widget.CardView>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:id="@+id/itemChains" android:gravity="center_vertical"
+    android:layout_height="70dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:contentDescription="@string/no_desc"
+            android:id="@+id/itemChainsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:src="@drawable/chain_fish" />
+
+        <Spinner
+            android:id="@+id/itemChainsBonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="end"
+            android:textSize="14sp"
+            android:background="#CCFFFFFF"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/itemChainsProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/itemChainsPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:layout_below="@+id/itemChainsProgress"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/itemChainsAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+</LinearLayout>
