@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="define_materialpreference"></string>
+    <!-- Author section -->
+    <string name="library_materialpreference_author">RikkaW</string>
+    <string name="library_materialpreference_authorWebsite">https://github.com/RikkaW/MaterialPreference</string>
+    <!-- Library section -->
+    <string name="library_materialpreference_libraryName">MaterialPreference</string>
+    <string name="library_materialpreference_libraryDescription">A simple Preference UI for AppCompat, modified from support library, make it more easier to use and more feature.</string>
+    <string name="library_materialpreference_libraryWebsite">https://github.com/RikkaW/MaterialPreference</string>
+    <string name="library_materialpreference_libraryVersion">1.4.4</string>
+    <!-- OpenSource section -->
+    <string name="library_materialpreference_isOpenSource">true</string>
+    <string name="library_materialpreference_repositoryLink">https://github.com/RikkaW/MaterialPreference</string>
+    <!-- ClassPath for autoDetect section -->
+    <string name="library_materialpreference_classPath">rikka.materialpreference</string>
+    <!-- License section -->
+    <string name="library_materialpreference_licenseId">apache_2_0</string>
+    <!-- Custom variables section -->
+</resources>
+

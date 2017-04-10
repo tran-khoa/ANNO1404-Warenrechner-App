@@ -6,6 +6,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import javax.inject.Inject;
 
@@ -63,6 +68,31 @@ public class MainActivity extends BaseActivity {
         gamesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         gamesRV.setItemAnimator(new DefaultItemAnimator());
         gamesRV.setAdapter(listAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_info:
+                new LibsBuilder()
+                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                        .withAboutIconShown(true)
+                        .withAboutAppName(getString(R.string.app_name))
+                        .withAboutVersionShown(true)
+                        .withAboutDescription(getString(R.string.app_desc))
+                        .withLicenseDialog(true)
+                        .withLicenseShown(true)
+                        .start(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public MainActivityComponent component() {

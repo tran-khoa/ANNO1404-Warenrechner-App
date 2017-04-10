@@ -43,7 +43,6 @@ class Logic {
             patrician_rights = Math.max(patrician_rights - noble_rights, 0);
         }
 
-        res.put(Population.BEGGARS, beggars);
         res.put(Population.PEASANTS, peasants);
         res.put(Population.CITIZENS, citizenships);
         res.put(Population.PATRICIANS, patrician_rights);

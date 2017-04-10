@@ -94,4 +94,6 @@
     <string name="rank2">Rank 2</string>
     <string name="rank3">Rank 3</string>
     <string name="not_attained">Not attained</string>
+    <string name="action_info">License information</string>
+    <string name="app_desc">Calculating population distribution, consumption and production chains for ANNO 1404.</string>
 </resources>

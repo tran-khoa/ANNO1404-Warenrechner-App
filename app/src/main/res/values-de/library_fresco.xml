@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="define_fresco"></string>
+    <!-- Author section -->
+    <string name="library_fresco_author">Facebook</string>
+    <string name="library_fresco_authorWebsite">http://frescolib.org/</string>
+    <!-- Library section -->
+    <string name="library_fresco_libraryName">Fresco</string>
+    <string name="library_fresco_libraryDescription">Fresco is a powerful system for displaying images in Android applications.</string>
+    <string name="library_fresco_libraryWebsite">https://github.com/facebook/fresco</string>
+    <string name="library_fresco_libraryVersion">1.2.0</string>
+    <!-- OpenSource section -->
+    <string name="library_fresco_isOpenSource">true</string>
+    <string name="library_fresco_repositoryLink">https://github.com/facebook/fresco</string>
+    <!-- ClassPath for autoDetect section -->
+    <string name="library_fresco_classPath">com.facebook.fresco</string>
+    <!-- License section -->
+    <string name="library_fresco_licenseId">bsd_3</string>
+    <!-- Custom variables section -->
+</resources>
+

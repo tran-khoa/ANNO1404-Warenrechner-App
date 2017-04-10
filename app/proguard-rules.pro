@@ -29,6 +29,15 @@
 -allowaccessmodification
 -dontpreverify
 
+# Guava 20
+-dontwarn com.google.common.***
+
+# AboutLibraries
+-keep class .R
+-keep class **.R$* {
+    <fields>;
+}
+
 # MaterialPreferences
 -keep class rikka.materialpreference.*** { *; }
 -keep class rikka.materialpreference.PreferenceInflater.*** { *; }

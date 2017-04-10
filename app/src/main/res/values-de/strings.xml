@@ -83,4 +83,6 @@
     <string name="rank1">Stufe 1</string>
     <string name="rank2">Stufe 2</string>
     <string name="rank3">Stufe 3</string>
+    <string name="action_info">Lizenzinformationen</string>
+    <string name="app_desc">Berechnet die Bevölkerungsverteilung, Verbrauch von Gütern sowie Produktionsketten für das Spiel ANNO 1404.</string>
 </resources>

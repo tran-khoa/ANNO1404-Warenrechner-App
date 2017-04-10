@@ -23,11 +23,6 @@ import com.sbgapps.simplenumberpicker.utils.ThemeUtil;
 
 import de.ktran.anno1404warenrechner.R;
 
-/**
- * Modified class from SimpleNumberPicker by Stephane Baiget.
- *
- * (C) 2017, Stephane Baiget under the Apache License, Version 2.0
- */
 public class NumberDialog extends DialogFragment {
 
     private static final String ARG_REFERENCE = "ARG_REFERENCE";
