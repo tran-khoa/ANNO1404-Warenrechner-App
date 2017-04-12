@@ -2,22 +2,22 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <string name="define_simplenumberpicker" translatable="false"></string>
+    <string name="define_simplenumberpicker" translatable="false" tools:ignore="UnusedResources"></string>
     <!-- Author section -->
-    <string name="library_simplenumberpicker_author">Stéphane Baiget</string>
-    <string name="library_simplenumberpicker_authorWebsite">https://github.com/StephaneBg/SimpleNumberPicker</string>
+    <string name="library_simplenumberpicker_author" tools:ignore="UnusedResources">Stéphane Baiget</string>
+    <string name="library_simplenumberpicker_authorWebsite" tools:ignore="UnusedResources">https://github.com/StephaneBg/SimpleNumberPicker</string>
     <!-- Library section -->
-    <string name="library_simplenumberpicker_libraryName">SimpleNumberPicker</string>
-    <string name="library_simplenumberpicker_libraryDescription">A customisable decimal and hexadecimal material picker view for Android.</string>
-    <string name="library_simplenumberpicker_libraryWebsite">https://github.com/StephaneBg/SimpleNumberPicker</string>
-    <string name="library_simplenumberpicker_libraryVersion">1.2</string>
+    <string name="library_simplenumberpicker_libraryName" tools:ignore="UnusedResources">SimpleNumberPicker</string>
+    <string name="library_simplenumberpicker_libraryDescription" tools:ignore="UnusedResources">A customisable decimal and hexadecimal material picker view for Android.</string>
+    <string name="library_simplenumberpicker_libraryWebsite" tools:ignore="UnusedResources">https://github.com/StephaneBg/SimpleNumberPicker</string>
+    <string name="library_simplenumberpicker_libraryVersion" tools:ignore="UnusedResources">1.2</string>
     <!-- OpenSource section -->
-    <string name="library_simplenumberpicker_isOpenSource">true</string>
-    <string name="library_simplenumberpicker_repositoryLink">https://github.com/StephaneBg/SimpleNumberPicker</string>
+    <string name="library_simplenumberpicker_isOpenSource" tools:ignore="UnusedResources">true</string>
+    <string name="library_simplenumberpicker_repositoryLink" tools:ignore="UnusedResources">https://github.com/StephaneBg/SimpleNumberPicker</string>
     <!-- ClassPath for autoDetect section -->
-    <string name="library_simplenumberpicker_classPath">com.sbgapps.simplenumberpicker</string>
+    <string name="library_simplenumberpicker_classPath" tools:ignore="UnusedResources">com.sbgapps.simplenumberpicker</string>
     <!-- License section -->
-    <string name="library_simplenumberpicker_licenseId">apache_2_0</string>
+    <string name="library_simplenumberpicker_licenseId" tools:ignore="UnusedResources">apache_2_0</string>
     <!-- Custom variables section -->
 </resources>
 

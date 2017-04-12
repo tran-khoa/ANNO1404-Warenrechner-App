@@ -31,7 +31,7 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    public void registerLifecycle(HasLifecycle lifecycle) {
+    protected void registerLifecycle(HasLifecycle lifecycle) {
         objectsWithLifecycle.add(lifecycle);
     }
 

@@ -2,22 +2,22 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <string name="define_fresco" translatable="false"></string>
+    <string name="define_fresco" translatable="false" tools:ignore="UnusedResources"></string>
     <!-- Author section -->
-    <string name="library_fresco_author">Facebook</string>
-    <string name="library_fresco_authorWebsite">http://frescolib.org/</string>
+    <string name="library_fresco_author" tools:ignore="UnusedResources">Facebook</string>
+    <string name="library_fresco_authorWebsite" tools:ignore="UnusedResources">http://frescolib.org/</string>
     <!-- Library section -->
-    <string name="library_fresco_libraryName">Fresco</string>
-    <string name="library_fresco_libraryDescription">Fresco is a powerful system for displaying images in Android applications.</string>
-    <string name="library_fresco_libraryWebsite">https://github.com/facebook/fresco</string>
-    <string name="library_fresco_libraryVersion">1.2.0</string>
+    <string name="library_fresco_libraryName" tools:ignore="UnusedResources">Fresco</string>
+    <string name="library_fresco_libraryDescription" tools:ignore="UnusedResources">Fresco is a powerful system for displaying images in Android applications.</string>
+    <string name="library_fresco_libraryWebsite" tools:ignore="UnusedResources">https://github.com/facebook/fresco</string>
+    <string name="library_fresco_libraryVersion" tools:ignore="UnusedResources">1.2.0</string>
     <!-- OpenSource section -->
-    <string name="library_fresco_isOpenSource">true</string>
-    <string name="library_fresco_repositoryLink">https://github.com/facebook/fresco</string>
+    <string name="library_fresco_isOpenSource" tools:ignore="UnusedResources">true</string>
+    <string name="library_fresco_repositoryLink" tools:ignore="UnusedResources">https://github.com/facebook/fresco</string>
     <!-- ClassPath for autoDetect section -->
-    <string name="library_fresco_classPath">com.facebook.fresco</string>
+    <string name="library_fresco_classPath" tools:ignore="UnusedResources">com.facebook.fresco</string>
     <!-- License section -->
-    <string name="library_fresco_licenseId">bsd_3</string>
+    <string name="library_fresco_licenseId" tools:ignore="UnusedResources">bsd_3</string>
     <!-- Custom variables section -->
 </resources>
 

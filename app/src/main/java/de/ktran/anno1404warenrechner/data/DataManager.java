@@ -60,7 +60,7 @@ public class DataManager {
 
     private void commitChanges() {
         final Set<String> saveString = new HashSet<>();
-        for (Game g : games) saveString.add(gson.toJson(g));
+        JavaCompat.forEach(games, item -> saveString.add(gson.toJson(item)));
 
         prefs.edit().putStringSet(app.getString(R.string.prefkey_data), saveString).apply();
     }
@@ -81,15 +81,6 @@ public class DataManager {
 
     private void onGameMetaDataChanged() {
         postResult(new GameListResultEvent(this.getSortedList()));
-    }
-
-    @Deprecated
-    private void onGameDataChanged(Game game) {
-        postResult(new PopulationResultEvent(game));
-        fetchNeedsChainsResults(game);
-        JavaCompat.forEach(registeredGoods, building -> DataManager.this.fetchChainsDetailResults(
-                building.getProduces(), game)); //@todo implement
-        onGameMetaDataChanged();
     }
 
     private void onProductionChainChanged(Game game, Goods goods) {
@@ -115,13 +106,15 @@ public class DataManager {
         onPopulationChange(game);
     }
 
-    //@TODO make void
     public boolean setBonus(Game game, ProductionBuilding building, int bonus) {
         if (!game.setBonus(building, bonus)) return false;
 
         commitChanges();
         onProductionChainChanged(game, building.getProduces());
         if (Goods.isMaterial(building.getProduces())) postResult(new MaterialResultsEvent(game));
+
+        JavaCompat.forEach(registeredGoods, b -> DataManager.this.fetchChainsDetailResults(
+                b.getProduces(), game)); //@workaround
 
         return true;
     }
@@ -132,6 +125,7 @@ public class DataManager {
         game.setOtherGoods(building, value);
         commitChanges();
 
+        fetchChainsDetailResults(building.getProduces(), game);
         postResult(new MaterialResultsEvent(game));
     }
 
@@ -139,14 +133,14 @@ public class DataManager {
         if (rank == game.getBeggarPrince()) return;
 
         game.setBeggarPrince(rank);
-        onGameDataChanged(game);
+        onPopulationChange(game);
     }
 
     public void setEnvoysFavour(Game game, int rank) {
         if (rank == game.getEnvoysFavour()) return;
 
         game.setEnvoysFavour(rank);
-        onGameDataChanged(game);
+        onPopulationChange(game);
     }
 
     public void createGame() {
@@ -235,7 +229,7 @@ public class DataManager {
             }
 
             commitChanges();
-            onGameDataChanged(game);
+            onPopulationChange(game);
         });
     }
 
@@ -249,7 +243,7 @@ public class DataManager {
             }
 
             commitChanges();
-            onGameDataChanged(game);
+            onPopulationChange(game);
         });
     }
 

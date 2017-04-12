@@ -58,7 +58,7 @@ public class MaterialDetailFragment extends GameFragment {
     @BindView(R.id.chainsAnimationPlaceholder)
     ViewGroup animPlaceholder;
 
-    ProductionChain chain;
+    private ProductionChain chain;
 
     @Override
     protected int getLayoutId() {

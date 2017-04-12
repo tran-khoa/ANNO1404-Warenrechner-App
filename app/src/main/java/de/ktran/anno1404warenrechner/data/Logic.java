@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.ktran.anno1404warenrechner.helpers.JavaCompat;
 import de.ktran.anno1404warenrechner.helpers.Pair;
 
 class Logic {
@@ -95,10 +96,7 @@ class Logic {
     List<ProductionChain> calculateAllNeedsChains() {
         final List<ProductionChain> results = new ArrayList<>();
 
-        for (final Goods g : Goods.getNeeds()) {
-            results.add(calculateNeedsChain(g));
-        }
-
+        JavaCompat.forEach(Goods.getNeeds(), item -> results.add(calculateNeedsChain(item)));
         return results;
     }
 

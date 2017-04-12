@@ -35,7 +35,7 @@ public class GameOverviewFragment extends GameFragment {
     @Inject
     Game game;
 
-    GameSectionsPagerAdapter sectionAdapter;
+    private GameSectionsPagerAdapter sectionAdapter;
 
     @BindView(R.id.game_overview_tabs)
     TabLayout vTabLayout;

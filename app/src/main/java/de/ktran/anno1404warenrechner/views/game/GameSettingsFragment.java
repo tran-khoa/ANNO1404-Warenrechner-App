@@ -48,10 +48,9 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
     @Inject
     EventBus bus;
 
-    EditTextPreference namePref;
-    Preference removePref;
-    SimpleMenuPreference beggarPrincePref;
-    SimpleMenuPreference envoysFavourPref;
+    private EditTextPreference namePref;
+    private SimpleMenuPreference beggarPrincePref;
+    private SimpleMenuPreference envoysFavourPref;
 
 
     @Override
@@ -97,7 +96,7 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
         namePref = (EditTextPreference) findPreference(getString(R.string.prefkey_title));
         namePref.setSummary(game.getName());
 
-        removePref = findPreference(getString(R.string.prefkey_delete));
+        Preference removePref = findPreference(getString(R.string.prefkey_delete));
         removePref.setOnPreferenceClickListener(preference -> {
             requestConfirmation(
                 getString(R.string.deleting_game),
@@ -139,7 +138,7 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
         return new CategoryDivideDividerDecoration();
     }
 
-    public GameActivity getGameActivity() {
+    private GameActivity getGameActivity() {
         if (!(getActivity() instanceof GameActivity)) {
             throw new IllegalStateException("PopulationFragment is initiated by the wrong activity.");
         }
@@ -193,7 +192,7 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
         return getContext().getResources().getStringArray(R.array.attainment_rank)[rank];
     }
 
-    public void requestConfirmation(String title, String desc, Runnable runnable) {
+    private void requestConfirmation(String title, String desc, Runnable runnable) {
         new AlertDialog.Builder(getGameActivity())
                 .setTitle(title)
                 .setMessage(desc)

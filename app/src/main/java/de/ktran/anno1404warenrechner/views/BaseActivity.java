@@ -16,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private final Set<HasLifecycle> objectsWithLifecycle = new HashSet<>();
 
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    public void registerLifecycle(HasLifecycle hasLifecycle) {
+    protected void registerLifecycle(HasLifecycle hasLifecycle) {
         objectsWithLifecycle.add(hasLifecycle);
     }
 

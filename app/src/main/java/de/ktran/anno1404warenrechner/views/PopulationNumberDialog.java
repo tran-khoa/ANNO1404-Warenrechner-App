@@ -108,7 +108,7 @@ public class PopulationNumberDialog extends DialogFragment {
         throw new IllegalArgumentException("Civilization with that number does not exist");
     }
 
-    public void setAdvancementText(int value, PopulationType.Civilization civilization) {
+    private void setAdvancementText(int value, PopulationType.Civilization civilization) {
         String advanceTextStart = getActivity().getString(R.string.advance_to);
         String advanceName = getPopulationTypeByProgress(value, civilization).getString(getContext());
         if (advancementText != null) {

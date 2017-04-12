@@ -11,6 +11,7 @@ public class JavaCompat {
      * @param <T> collection item type
      */
     public static <T> void forEach(Collection<T> collection, CompatConsumer<T> action) {
+        //noinspection Convert2streamapi
         for (T item : collection) action.accept(item);
     }
 }

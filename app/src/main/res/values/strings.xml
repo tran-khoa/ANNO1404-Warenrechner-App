@@ -107,7 +107,6 @@
     <string name="res_cannons">Cannons</string>
     <string name="other_goods">Other chains</string>
     <string name="tpm" translatable="false">%1$.2f TPM</string>
-    <string name="empty_productionchain">Empty production chain</string>
     <string name="res_stone">Stone</string>
     <string name="advance_to">Advance to</string>
 </resources>
