@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -54,7 +53,7 @@ public class ChainsAdapter extends RecyclerView.Adapter<ChainsAdapter.ViewHolder
     public void onStart() {
         this.bus.register(this);
 
-        dataManager.fetchChainsResults(game);
+        dataManager.fetchNeedsChainsResults(game);
     }
 
     @Override
@@ -112,7 +111,7 @@ public class ChainsAdapter extends RecyclerView.Adapter<ChainsAdapter.ViewHolder
                 R.array.bonus, R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holder.spinner.setAdapter(adapter);
-        holder.spinner.setSelection(game.getBonus().get(chain.getBuilding()));
+        holder.spinner.setSelection(game.getBonus(chain.getBuilding()));
 
         holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -122,7 +121,7 @@ public class ChainsAdapter extends RecyclerView.Adapter<ChainsAdapter.ViewHolder
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                holder.spinner.setSelection(game.getBonus().get(chain.getBuilding()));
+                holder.spinner.setSelection(game.getBonus(chain.getBuilding()));
             }
         });
 

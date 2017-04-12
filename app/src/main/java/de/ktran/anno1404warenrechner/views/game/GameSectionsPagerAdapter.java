@@ -7,13 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import de.ktran.anno1404warenrechner.R;
-import de.ktran.anno1404warenrechner.data.Game;
 
-public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
+class GameSectionsPagerAdapter extends FragmentPagerAdapter {
 
     private final Context context;
 
-    public GameSectionsPagerAdapter(@NonNull final Context context, @NonNull final FragmentManager fm) {
+    GameSectionsPagerAdapter(@NonNull final Context context, @NonNull final FragmentManager fm) {
         super(fm);
         this.context = context;
     }
@@ -25,6 +24,8 @@ public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
                 return new PopulationFragment();
             case 1:
                 return new ChainsFragment();
+            case 2:
+                return new MaterialOverviewFragment();
             default:
                 throw new UnsupportedOperationException();
         }
@@ -32,7 +33,7 @@ public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -42,6 +43,8 @@ public class GameSectionsPagerAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.population).toUpperCase();
             case 1:
                 return context.getString(R.string.consumption).toUpperCase();
+            case 2:
+                return context.getString(R.string.other_goods).toUpperCase();
         }
 
         throw new UnsupportedOperationException();

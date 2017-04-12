@@ -48,7 +48,10 @@ public class AppModule {
     @Provides
     @Singleton
     EventBus provideBus() {
-        return EventBus.getDefault();
+        return EventBus.builder()
+                .logNoSubscriberMessages(false)
+                .sendNoSubscriberEvent(false)
+                .addIndex(new EventBusIndex()).build();
     }
 
     @Provides

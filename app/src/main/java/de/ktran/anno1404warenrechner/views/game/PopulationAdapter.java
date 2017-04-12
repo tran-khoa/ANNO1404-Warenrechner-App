@@ -15,14 +15,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.Game;
 import de.ktran.anno1404warenrechner.data.Population;
+import de.ktran.anno1404warenrechner.data.PopulationType;
 import de.ktran.anno1404warenrechner.event.PopulationResultEvent;
 import de.ktran.anno1404warenrechner.views.HasLifecycle;
 
@@ -31,7 +29,7 @@ public class PopulationAdapter extends RecyclerView.Adapter<PopulationAdapter.Vi
     private final EventBus bus;
     private final GameActivity activity;
 
-    private Map<Population, Integer> data = new HashMap<>();
+    private Population populationData;
     private Game game = null;
 
     public PopulationAdapter(@NonNull final Game game, @NonNull final GameActivity activity, @NonNull final EventBus bus) {
@@ -39,7 +37,7 @@ public class PopulationAdapter extends RecyclerView.Adapter<PopulationAdapter.Vi
         this.bus = bus;
 
         this.game = game;
-        this.data = game.getPopulation();
+        this.populationData = game.population();
     }
 
     @Override
@@ -89,28 +87,27 @@ public class PopulationAdapter extends RecyclerView.Adapter<PopulationAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, final int position) {
         if (position == 0) { // occidental
             holder.popParent.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
-            holder.popClick.setOnClickListener(v -> activity.showPopEditDialog(GameActivity.DIALOG_ID_OCCIDENTAL));
+            holder.popClick.setOnClickListener(v -> activity.showHouseEditDialog(PopulationType.Civilization.OCCIDENTAL));
 
             holder.popName.setText(R.string.pop_total_occidental);
             holder.popIcon.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_pop_occidental));
-            holder.popCount.setText(String.valueOf(game.getPopCountOccidental()));
-            holder.houseCount.setText(String.valueOf(game.getHouseCountOccidental()));
-
-        } else if (position == 1) {
+            holder.popCount.setText(String.valueOf(game.population().getPopulationCount(PopulationType.Civilization.OCCIDENTAL)));
+            holder.houseCount.setText(String.valueOf(game.population().getHouseCount(PopulationType.Civilization.OCCIDENTAL)));
+        } else if (position == 1) { // oriental
             holder.popParent.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimary));
-            holder.popClick.setOnClickListener(v -> activity.showPopEditDialog(GameActivity.DIALOG_ID_ORIENT));
+            holder.popClick.setOnClickListener(v -> activity.showHouseEditDialog(PopulationType.Civilization.ORIENTAL));
 
             holder.popName.setText(R.string.pop_total_oriental);
             holder.popIcon.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_pop_orient));
-            holder.popCount.setText(String.valueOf(game.getPopCountOriental()));
-            holder.houseCount.setText(String.valueOf(game.getHouseCountOriental()));
+            holder.popCount.setText(String.valueOf(game.population().getPopulationCount(PopulationType.Civilization.ORIENTAL)));
+            holder.houseCount.setText(String.valueOf(game.population().getHouseCount(PopulationType.Civilization.ORIENTAL)));
         } else {
-            final Population pop = Population.values()[position - 2];
-            final int popCount = data.get(pop);
+            final PopulationType pop = PopulationType.values()[position - 2];
+            final int popCount = populationData.getPopulationCount(pop);
             final int houseCount = pop.getHouseCountByPopSize(popCount);
 
             holder.popParent.setBackgroundColor(pop.getColor(activity));
-            holder.popClick.setOnClickListener(v -> activity.showPopEditDialog(pop.ordinal()));
+            holder.popClick.setOnClickListener(v -> activity.showPopEditDialog(pop));
 
             holder.popName.setText(pop.getString(activity));
             holder.popIcon.setImageDrawable(pop.getIcon(activity));
@@ -121,13 +118,13 @@ public class PopulationAdapter extends RecyclerView.Adapter<PopulationAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return (game != null) ? this.data.size() + 2 : this.data.size();
+        return (game != null) ? PopulationType.values().length + 2 : PopulationType.values().length;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     @SuppressWarnings("unused")
     public void onMessageEvent(PopulationResultEvent event) {
-        this.data = event.getGame().getPopulation();
+        this.populationData = event.getGame().population();
         this.game = event.getGame();
         notifyDataSetChanged();
     }

@@ -4,6 +4,12 @@ package de.ktran.anno1404warenrechner.data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is unnecessary at the moment as the only good which can
+ * be produced by two different buildings is coal.
+ *
+ * May be necessary for modded ANNO 1404 or ANNO 2070, though.
+ */
 public class BuildingAlternative {
     private final List<ProductionChain> chainList = new ArrayList<>();
     private final Goods producedGood;
@@ -15,7 +21,7 @@ public class BuildingAlternative {
         return res;
     }
 
-    public BuildingAlternative(Goods goods) {
+    BuildingAlternative(Goods goods) {
         this.producedGood = goods;
 
     }
@@ -25,20 +31,12 @@ public class BuildingAlternative {
     }
 
 
-    public void addBuildingAlternative(ProductionChain chain) {
+    void addBuildingAlternative(ProductionChain chain) {
         chainList.add(chain);
-    }
-
-    public int getCount() {
-        return chainList.size();
     }
 
     public ProductionChain getChain() {
         return chainList.get(0);
-    }
-
-    public ProductionChain getChain(int position) {
-        return chainList.get(position);
     }
 
     @Override

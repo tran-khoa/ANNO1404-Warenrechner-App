@@ -133,7 +133,7 @@
 -dontwarn com.google.j2objc.annotations.Weak
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
-# EventBus
+############## START EVENTBUS ########################
 -keepattributes *Annotation*
 -keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
@@ -144,6 +144,7 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+############## END EVENTBUS ########################
 
 # Keep our interfaces so they can be used by other ProGuard rules.
 # See http://sourceforge.net/p/proguard/bugs/466/

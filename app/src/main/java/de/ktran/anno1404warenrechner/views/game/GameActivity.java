@@ -13,7 +13,6 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.sbgapps.simplenumberpicker.decimal.DecimalPickerHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -23,21 +22,18 @@ import de.ktran.anno1404warenrechner.App;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
-import de.ktran.anno1404warenrechner.data.Population;
+import de.ktran.anno1404warenrechner.data.PopulationType;
 import de.ktran.anno1404warenrechner.data.ProductionChain;
-import de.ktran.anno1404warenrechner.helpers.NumberDialog;
 import de.ktran.anno1404warenrechner.views.BaseActivity;
 import de.ktran.anno1404warenrechner.views.DaggerGameActivityComponent;
 import de.ktran.anno1404warenrechner.views.GameActivityComponent;
 import de.ktran.anno1404warenrechner.views.GameActivityModule;
+import de.ktran.anno1404warenrechner.views.PopulationNumberDialog;
 
-public class GameActivity extends BaseActivity implements DecimalPickerHandler {
+public class GameActivity extends BaseActivity {
 
     public static final String BUNDLE_ID_KEY = "KEY_ID";
     public static final String BUNDLE_CHAIN_KEY = "KEY_CHAIN";
-
-    public static final int DIALOG_ID_OCCIDENTAL = -1;
-    public static final int DIALOG_ID_ORIENT = -2;
 
     private GameActivityComponent mComponent;
 
@@ -118,6 +114,35 @@ public class GameActivity extends BaseActivity implements DecimalPickerHandler {
         getSupportFragmentManager().executePendingTransactions();
     }
 
+    public void toOtherGoodsDetail(ProductionChain chain, View origin) {
+        final MaterialDetailFragment detailFragment = new MaterialDetailFragment();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final Slide slide = new Slide(Gravity.END);
+            slide.setDuration(333);
+            detailFragment.setEnterTransition(slide);
+            detailFragment.setExitTransition(slide);
+
+            overviewFragment.setExitTransition(new Fade());
+
+            Transition t = TransitionInflater.from(this).inflateTransition(android.R.transition.move);
+            detailFragment.setSharedElementEnterTransition(t);
+            detailFragment.setSharedElementReturnTransition(t);
+        }
+
+        final Bundle bundle = new Bundle();
+        bundle.putString(GameActivity.BUNDLE_CHAIN_KEY, gson.toJson(chain));
+        detailFragment.setArguments(bundle);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.game_activity_parent, detailFragment)
+                .addToBackStack(null)
+                .addSharedElement(origin, ViewCompat.getTransitionName(origin))
+                .commit();
+        getSupportFragmentManager().executePendingTransactions();
+    }
+
     public void toSettings() {
         final GameSettingsFragment fragment = new GameSettingsFragment();
 
@@ -141,38 +166,22 @@ public class GameActivity extends BaseActivity implements DecimalPickerHandler {
         dataManager.gameOpened(game);
     }
 
-    public void showPopEditDialog(int popId) {
+    public void showPopEditDialog(PopulationType populationType) {
+        final PopulationNumberDialog.Builder builder = new PopulationNumberDialog.Builder()
+                .setPopulationType(populationType)
+                .setForceHouse(false);
 
-        final NumberDialog.Builder builder = new NumberDialog.Builder()
-                .setReference(popId)
-                .setNatural(true)
-                .setTheme(com.sbgapps.simplenumberpicker.R.style.SimpleNumberPickerTheme);
-
-        if (popId == DIALOG_ID_ORIENT || popId == DIALOG_ID_OCCIDENTAL) {
-            builder.setSign(false);
-            builder.setDefaultNegative(true);
-        } else {
-            builder.setSign(true);
-            builder.setDefaultNegative(false);
-        }
-
-        final NumberDialog d = builder.create();
+        final PopulationNumberDialog d = builder.create();
         d.show(getSupportFragmentManager(), "TAG_POP_DIALOG");
     }
 
-    @Override
-    public void onDecimalNumberPicked(int reference, float number) {
-        switch (reference) {
-            case DIALOG_ID_OCCIDENTAL:
-                dataManager.changeTotalCountOccidental(game, (int) number);
-                break;
-            case DIALOG_ID_ORIENT:
-                dataManager.changeTotalCountOriental(game, (int) number);
-                break;
-            default:
-                dataManager.setPopulation(game, Population.values()[reference], (int) number);
-                break;
-        }
+    public void showHouseEditDialog(PopulationType.Civilization civilization) {
+        final PopulationNumberDialog.Builder builder = new PopulationNumberDialog.Builder()
+                .setPopulationType(civilization)
+                .setForceHouse(true);
+
+        final PopulationNumberDialog d = builder.create();
+        d.show(getSupportFragmentManager(), "TAG_POP_DIALOG");
     }
 
     public GameActivityComponent component() {

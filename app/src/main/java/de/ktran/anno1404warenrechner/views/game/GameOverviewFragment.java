@@ -104,9 +104,6 @@ public class GameOverviewFragment extends GameFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     @SuppressWarnings("unused")
     public void onMessageEvent(GameNameChangedEvent event) {
-
-        if (gameActivity.getSupportActionBar() != null) {
-            gameActivity.getSupportActionBar().setTitle(event.getGame().getName());
-        }
+        if (gameActivity.getSupportActionBar() != null) toolbar.setTitle(event.getGame().getName());
     }
 }

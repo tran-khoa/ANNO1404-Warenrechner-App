@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:id="@+id/itemChains"
+    android:layout_height="70dp">
+
+    <ImageView
+        android:id="@+id/itemChainsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/no_desc"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/res_cannons" />
+
+    <TextView
+        android:id="@+id/itemChainsText"
+        android:layout_width="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/itemChainsImage"/>
+
+    <com.travijuu.numberpicker.library.NumberPicker
+        android:id="@+id/itemChainsNumberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        numberpicker:min="0"
+        numberpicker:max="100"
+        numberpicker:unit="1"
+        numberpicker:custom_layout="@layout/small_number_picker_view"/>
+
+    <Spinner
+        android:id="@+id/itemChainsBonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="end"
+        android:textSize="14sp"
+        android:background="#CCFFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

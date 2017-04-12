@@ -96,4 +96,18 @@
     <string name="not_attained">Not attained</string>
     <string name="action_info">License information</string>
     <string name="app_desc">Calculating population distribution, consumption and production chains for ANNO 1404.</string>
+    <string name="res_ropes">Ropes</string>
+    <string name="res_tools">Tools</string>
+    <string name="intm_clay">Clay</string>
+    <string name="res_mosaic">Mosaics</string>
+    <string name="intm_potash">Potash</string>
+    <string name="res_glass">Glass</string>
+    <string name="res_weapons">Weapons</string>
+    <string name="res_war_machines">War machines</string>
+    <string name="res_cannons">Cannons</string>
+    <string name="other_goods">Other chains</string>
+    <string name="tpm" translatable="false">%1$.2f TPM</string>
+    <string name="empty_productionchain">Empty production chain</string>
+    <string name="res_stone">Stone</string>
+    <string name="advance_to">Advance to</string>
 </resources>

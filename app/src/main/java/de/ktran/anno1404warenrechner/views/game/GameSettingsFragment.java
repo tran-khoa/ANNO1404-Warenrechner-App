@@ -169,7 +169,6 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.prefkey_title))) {
             dataManager.setGameTitle(game, sharedPreferences.getString(key, game.getName()));
-
         } else if (key.equals(getString(R.string.prefkey_beggar_prince))) {
             int res = Integer.valueOf(sharedPreferences.getString(key, String.valueOf(game.getBeggarPrince())));
 
@@ -194,6 +193,15 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
         return getContext().getResources().getStringArray(R.array.attainment_rank)[rank];
     }
 
+    public void requestConfirmation(String title, String desc, Runnable runnable) {
+        new AlertDialog.Builder(getGameActivity())
+                .setTitle(title)
+                .setMessage(desc)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> runnable.run())
+                .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     @SuppressWarnings("unused")
     public void onMessageEvent(GameNameChangedEvent event) {
@@ -202,14 +210,5 @@ public class GameSettingsFragment extends PreferenceFragment implements SharedPr
         }
 
         namePref.setSummary(event.getGame().getName());
-    }
-
-    public void requestConfirmation(String title, String desc, Runnable runnable) {
-        new AlertDialog.Builder(getGameActivity())
-                .setTitle(title)
-                .setMessage(desc)
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> runnable.run())
-                .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
-                .show();
     }
 }

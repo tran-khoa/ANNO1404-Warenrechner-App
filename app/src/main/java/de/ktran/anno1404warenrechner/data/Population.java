@@ -1,129 +1,101 @@
 package de.ktran.anno1404warenrechner.data;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
+public class Population {
 
-import de.ktran.anno1404warenrechner.R;
+    private final HashMap<PopulationType, Integer> population;
 
-public enum Population {
-    BEGGARS(500, com.github.mcginty.R.color.material_bluegrey700,
-            R.drawable.ic_beggars,
-            R.string.pop_beggars,
-            ImmutableMap.of(
-                    Goods.FOOD_FISH, 0.7f,
-                    Goods.DRINK_CIDER, 0.3f
-            )
-    ),
-
-    PEASANTS(8, com.github.mcginty.R.color.material_lime700,
-            R.drawable.ic_peasants,
-            R.string.pop_peasants,
-            ImmutableMap.of(
-                    Goods.FOOD_FISH, 1f,
-                    Goods.DRINK_CIDER, 0.44f
-            )
-    ),
-    CITIZENS(15, com.github.mcginty.R.color.material_lightgreen700,
-            R.drawable.ic_citizens,
-            R.string.pop_citizens,
-            ImmutableMap.of(
-                    Goods.FOOD_FISH, 0.4f,
-                    Goods.FOOD_SPICES, 0.4f,
-                    Goods.DRINK_CIDER, 0.44f,
-                    Goods.CLOTHING_LINEN, 0.42f
-            )
-    ),
-    PATRICIANS(25, com.github.mcginty.R.color.material_lightblue700,
-            R.drawable.ic_patricians,
-            R.string.pop_patrician,
-            new ImmutableMap.Builder<Goods, Float>()
-                    .put(Goods.FOOD_FISH, 0.22f)
-                    .put(Goods.FOOD_SPICES, 0.22f)
-                    .put(Goods.FOOD_BREAD, 0.55f)
-                    .put(Goods.DRINK_CIDER, 0.23f)
-                    .put(Goods.DRINK_BEER, 0.24f)
-                    .put(Goods.CLOTHING_LINEN, 0.19f)
-                    .put(Goods.CLOTHING_LEATHER_JERKINS, 0.28f)
-                    .put(Goods.POSSESSION_BOOKS, 0.16f)
-                    .put(Goods.POSSESSION_CANDLESTICKS, 0.08f).build()
-    ),
-    NOBLEMEN(40, com.github.mcginty.R.color.material_purple700,
-            R.drawable.ic_noblemen,
-            R.string.pop_noblemen,
-            new ImmutableMap.Builder<Goods, Float>()
-                    .put(Goods.FOOD_FISH, 0.16f)
-                    .put(Goods.FOOD_SPICES, 0.16f)
-                    .put(Goods.FOOD_BREAD, 0.39f)
-                    .put(Goods.FOOD_MEAT, 0.22f)
-                    .put(Goods.DRINK_CIDER, 0.13f)
-                    .put(Goods.DRINK_BEER, 0.14f)
-                    .put(Goods.DRINK_WINE, 0.2f)
-                    .put(Goods.CLOTHING_LINEN, 0.08f)
-                    .put(Goods.CLOTHING_LEATHER_JERKINS, 0.16f)
-                    .put(Goods.CLOTHING_BROCADE_ROBE, 0.16f)
-                    .put(Goods.CLOTHING_FUR_COATS, 0.142f)
-                    .put(Goods.POSSESSION_BOOKS, 0.09f)
-                    .put(Goods.POSSESSION_CANDLESTICKS, 0.06f)
-                    .put(Goods.POSSESSION_GLASSES, 0.117f)
-                    .build()
-    ),
-
-
-    NOMADS(15, com.github.mcginty.R.color.material_yellow700,
-            R.drawable.ic_nomads,
-            R.string.pop_nomads,
-            ImmutableMap.of(
-                    Goods.FOOD_DATE, 0.666f,
-                    Goods.DRINK_MILK, 0.344f,
-                    Goods.POSSESSION_CARPET, 0.166f
-            )
-    ),
-    ENVOYS(25, com.github.mcginty.R.color.material_deeporange700,
-            R.drawable.ic_envoys,
-            R.string.pop_envoys,
-            new ImmutableMap.Builder<Goods, Float>()
-                    .put(Goods.FOOD_DATE, 0.5f)
-                    .put(Goods.FOOD_MARZIPAN, 0.163f)
-                    .put(Goods.DRINK_MILK, 0.225f)
-                    .put(Goods.DRINK_COFFEE, 0.1f)
-                    .put(Goods.POSSESSION_CARPET, 0.1f)
-                    .put(Goods.POSSESSION_PEARL_NECKLACES, 0.133f)
-                    .put(Goods.POSSESSION_PERFUME, 0.08f).build()
-
-    );
-
-    // Needs of Pop. per 100 inhabitants per minute
-    public final ImmutableMap<Goods, Float> needsPerMinute;
-
-    private final int colorId;
-    private final int iconId;
-    private final int stringId;
-    public final int houseSize;
-
-    Population(int houseSize, int color, int icon, int string, ImmutableMap<Goods, Float> needsPerMinute) {
-        this.needsPerMinute = needsPerMinute;
-        this.colorId = color;
-        this.iconId = icon;
-        this.stringId = string;
-        this.houseSize = houseSize;
+    static Population newInstance() {
+        final HashMap<PopulationType, Integer> newMap = new HashMap<>();
+        for (PopulationType p : PopulationType.values()) {
+            newMap.put(p, 0);
+        }
+        return new Population(newMap);
     }
 
-    public int getColor(Context context) {
-        return ContextCompat.getColor(context, colorId);
+    private Population(HashMap<PopulationType, Integer> population) {
+        this.population = population;
     }
 
-    public Drawable getIcon(Context context) {
-        return ContextCompat.getDrawable(context, iconId);
+    /**
+     * @return Total population count
+     */
+    public int getPopulationCount() {
+        int count = 0;
+        for (int v : population.values()) count += v;
+        return count;
     }
 
-    public String getString(Context context) {
-        return context.getString(stringId);
+    /**
+     * @param civ Civilization (Occidental, oriental)
+     * @return Occidental or oriental population count
+     */
+    public int getPopulationCount(PopulationType.Civilization civ) {
+        int count = 0;
+        for (final Map.Entry<PopulationType, Integer> e : population.entrySet()) {
+            if (e.getKey().getCivilization() == civ) count += e.getValue();
+        }
+        return count;
     }
 
-    public int getHouseCountByPopSize(int popSize) {
-        return (int) Math.ceil(popSize / (float) houseSize);
+    /**
+     * @param populationType Population type
+     * @return Population count of given type
+     */
+    public int getPopulationCount(PopulationType populationType) {
+        return population.get(populationType);
+    }
+
+    public List<PopulationType> getHighestCivs() {
+        List<PopulationType> res = new ArrayList<>();
+
+        if (population.get(PopulationType.NOBLEMEN) > 0) {
+            res.add(PopulationType.NOBLEMEN);
+        } else if (population.get(PopulationType.PATRICIANS) > 0) {
+            res.add(PopulationType.PATRICIANS);
+        } else if (population.get(PopulationType.CITIZENS) > 0) {
+            res.add(PopulationType.CITIZENS);
+        } else if (population.get(PopulationType.PEASANTS) > 0) {
+            res.add(PopulationType.PEASANTS);
+        }
+
+        if (population.get(PopulationType.ENVOYS) > 0) {
+            res.add(PopulationType.ENVOYS);
+        } else if (population.get(PopulationType.NOMADS) > 0) {
+            res.add(PopulationType.NOMADS);
+        }
+
+        return res;
+    }
+
+
+    boolean setPopulationCount(PopulationType type, int count) {
+        if (population.get(type) == count) return false;
+
+        population.put(type, count);
+        return true;
+    }
+
+    public int getHouseCount(PopulationType.Civilization civilization) {
+        int count = 0;
+
+        for (Map.Entry<PopulationType, Integer> e : population.entrySet()) {
+            if (e.getKey().getCivilization() == civilization) count += e.getKey().getHouseCountByPopSize(e.getValue());
+        }
+
+        return count;
+    }
+
+    boolean setHouseCount(PopulationType type, int count) {
+        final int populationCount = count * type.houseSize;
+
+        if (population.get(type) == populationCount) return false;
+
+        population.put(type, populationCount);
+        return true;
     }
 }

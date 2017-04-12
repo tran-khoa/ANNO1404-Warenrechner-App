@@ -22,7 +22,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,20 +41,20 @@
             android:maxLines="1"
             android:padding="@dimen/snp_margin_padding_size_medium"
             app:minTextSize="14sp"
-            tools:text="123458"
-            />
+            tools:text="123458" />
 
         <ImageButton
-            android:contentDescription="@string/no_desc"
             android:id="@+id/key_backspace"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/snp_ic_backspace_black_24dp"
-            />
+            android:contentDescription="@string/no_desc"
+            tools:src="@drawable/snp_ic_backspace_black_24dp" />
+
     </LinearLayout>
 
     <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -68,7 +69,7 @@
                 app:layout_widthPercent="100%"
                 app:orientation="vertical"
                 app:rowCount="4"
-                >
+                android:layout_height="340dp">
 
                 <TextView
                     android:id="@+id/key_1"
@@ -78,8 +79,7 @@
                     android:text="1"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_4"
@@ -89,8 +89,7 @@
                     android:text="4"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
 
                 <TextView
@@ -101,8 +100,7 @@
                     android:text="7"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_house"
@@ -113,8 +111,7 @@
                     android:paddingTop="26dp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_2"
@@ -124,8 +121,7 @@
                     android:text="2"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_5"
@@ -135,8 +131,7 @@
                     android:text="5"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_8"
@@ -146,8 +141,7 @@
                     android:text="8"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_0"
@@ -157,8 +151,7 @@
                     android:text="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_3"
@@ -168,8 +161,7 @@
                     android:text="3"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_6"
@@ -179,8 +171,7 @@
                     android:text="6"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
 
                 <TextView
                     android:id="@+id/key_9"
@@ -190,9 +181,32 @@
                     android:text="9"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
-                    app:layout_rowWeight="1"
-                    />
+                    app:layout_rowWeight="1" />
+
             </android.support.v7.widget.GridLayout>
+
         </android.support.percent.PercentFrameLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/houseNumberPickerPopLimitDesc"
+        android:text="Advance to patricians "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="16dp"/>
+
+    <SeekBar
+        android:id="@+id/houseNumberPickerPopLimit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:max="3"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        />
+
 </LinearLayout>

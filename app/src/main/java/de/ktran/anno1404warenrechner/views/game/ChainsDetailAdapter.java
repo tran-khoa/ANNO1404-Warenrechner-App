@@ -40,7 +40,7 @@ public class ChainsDetailAdapter extends RecyclerView.Adapter<ChainsDetailAdapte
 
     private List<BuildingAlternative> chainData = new ArrayList<>();
 
-    private ProductionChain chain;
+    private ProductionChain rootChain;
 
     public ChainsDetailAdapter(DataManager dataManager, Game game, GameActivity activity, EventBus bus) {
         this.dataManager = dataManager;
@@ -113,26 +113,24 @@ public class ChainsDetailAdapter extends RecyclerView.Adapter<ChainsDetailAdapte
                     ContextCompat.getDrawable(activity, R.drawable.coal2)
             );
         } else {
-            holder.view.setImageDrawable(entry.getChain().getBuilding().getProduces().getDrawable(activity));
+            holder.view.setImageDrawable(entry.getProducedGood().getDrawable(activity));
         }
 
-        int percentage = (int) Math.floor(firstChain.getEfficiency() * 100);
+        final int percentage = (int) Math.floor(firstChain.getEfficiency() * 100);
         holder.progressBar.setProgress(percentage);
         holder.amountText.setText(String.valueOf(firstChain.getChains()));
         holder.percentageText.setText(String.valueOf(percentage + "%"));
-
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity,
                 R.array.bonus, R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holder.spinner.setAdapter(adapter);
-        holder.spinner.setSelection(game.getBonus().get(firstChain.getBuilding()));
-
+        holder.spinner.setSelection(game.getBonus(firstChain.getBuilding()));
         holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (dataManager.setBonus(game, firstChain.getBuilding(), position)) {
-                    dataManager.fetchChainsDetailResults(chain, game);
+                    dataManager.fetchChainsDetailResults(rootChain.getBuilding().getProduces(), game);
                 }
             }
 
@@ -143,19 +141,19 @@ public class ChainsDetailAdapter extends RecyclerView.Adapter<ChainsDetailAdapte
     }
 
     void init(ProductionChain chain) {
-        this.chain = chain;
+        this.rootChain = chain;
         this.chainData.add(
                 BuildingAlternative.of(chain)
         );
         notifyDataSetChanged();
 
-        dataManager.fetchChainsDetailResults(chain, game);
+        dataManager.fetchChainsDetailResults(chain.getBuilding().getProduces(), game);
     }
 
     @SuppressWarnings("unused")
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(ChainsDetailResultEvent event) {
-        if (!event.getChain().getBuilding().equals(this.chain.getBuilding())) return;
+        if (event.getGoods() != rootChain.getBuilding().getProduces()) return;
 
         this.chainData = event.getResult();
         notifyDataSetChanged();

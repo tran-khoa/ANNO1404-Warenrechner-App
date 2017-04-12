@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
-    <string name="define_materialpreference"></string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string name="define_materialpreference" translatable="false"></string>
     <!-- Author section -->
     <string name="library_materialpreference_author">RikkaW</string>
     <string name="library_materialpreference_authorWebsite">https://github.com/RikkaW/MaterialPreference</string>

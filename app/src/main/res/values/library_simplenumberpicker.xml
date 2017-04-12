@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
-    <string name="define_simplenumberpicker"></string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string name="define_simplenumberpicker" translatable="false"></string>
     <!-- Author section -->
     <string name="library_simplenumberpicker_author">Stéphane Baiget</string>
     <string name="library_simplenumberpicker_authorWebsite">https://github.com/StephaneBg/SimpleNumberPicker</string>

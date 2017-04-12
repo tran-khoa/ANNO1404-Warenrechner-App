@@ -15,17 +15,15 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.ktran.anno1404warenrechner.R;
 import de.ktran.anno1404warenrechner.data.DataManager;
 import de.ktran.anno1404warenrechner.data.Game;
-import de.ktran.anno1404warenrechner.data.Population;
+import de.ktran.anno1404warenrechner.data.PopulationType;
 import de.ktran.anno1404warenrechner.event.GameListResultEvent;
 import de.ktran.anno1404warenrechner.helpers.DisplayHelper;
 import de.ktran.anno1404warenrechner.views.HasLifecycle;
@@ -102,14 +100,14 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
         holder.mClick.setOnClickListener(v -> GameActivity.startActivity(activity, game.getId()));
 
         holder.mName.setText(game.getName());
-        holder.mDate.setText(new SimpleDateFormat("dd. MMMM yyyy - HH:mm", Locale.getDefault()).format(game.getDate()));
-        holder.mPopCount.setText(String.valueOf(game.getPopCount()));
+        holder.mDate.setText(game.getLastOpenedFormatted());
+        holder.mPopCount.setText(String.valueOf(game.population().getPopulationCount()));
 
         holder.mBackground.setImageResource(getDrawableByCiv(game));
 
         holder.mPopType.removeAllViews();
         final int dimens = DisplayHelper.dpToPx(activity, 15);
-        for (Population p : game.getHighestCivs()) {
+        for (PopulationType p : game.population().getHighestCivs()) {
             final ImageView imageView = new ImageView(activity);
             imageView.setImageDrawable(p.getIcon(activity));
             imageView.setLayoutParams(new RecyclerView.LayoutParams(dimens, dimens));
@@ -119,17 +117,17 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
     }
 
     private int getDrawableByCiv(Game game) {
-        final List<Population> highestCivs = game.getHighestCivs();
+        final List<PopulationType> highestCivs = game.population().getHighestCivs();
 
-        if (highestCivs.contains(Population.NOBLEMEN)) {
-            int count = game.getPopulation().get(Population.NOBLEMEN);
+        if (highestCivs.contains(PopulationType.NOBLEMEN)) {
+            int count = game.population().getPopulationCount(PopulationType.NOBLEMEN);
             if (count >= 3500) {
                 return R.drawable.bg_noblemen_3;
             } else if (count >= 750) {
                 return R.drawable.bg_noblemen_2;
             }
             return R.drawable.bg_noblemen_1;
-        } else if (highestCivs.contains(Population.PATRICIANS)) {
+        } else if (highestCivs.contains(PopulationType.PATRICIANS)) {
             return R.drawable.bg_patricians;
         }
 

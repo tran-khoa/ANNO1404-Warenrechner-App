@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
-    <string name="define_fresco"></string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string name="define_fresco" translatable="false"></string>
     <!-- Author section -->
     <string name="library_fresco_author">Facebook</string>
     <string name="library_fresco_authorWebsite">http://frescolib.org/</string>

@@ -33,7 +33,7 @@ public enum ProductionBuilding {
     PIG_FARM("pig_farm", null, Goods.INTERMEDIARY_ANIMAL_HIDES, 2.0f),
     TANNERY("tannery", ImmutableMap.of(
             Goods.INTERMEDIARY_ANIMAL_HIDES, 4.0f,
-            Goods.INTERMEDIARY_SALT, 0.5f
+            Goods.INTERMEDIARY_SALT, 2f
     ), Goods.CLOTHING_LEATHER_JERKINS, 4.0f),
 
     // --> BOOKS
@@ -44,7 +44,7 @@ public enum ProductionBuilding {
     ), Goods.INTERMEDIARY_PAPER, 3.0f),
     PRINTING_HOUSE("printing_house", ImmutableMap.of(
             Goods.INTERMEDIARY_INDIGO, 3f,
-            Goods.INTERMEDIARY_PAPER, 0.5f
+            Goods.INTERMEDIARY_PAPER, 1.5f
     ), Goods.POSSESSION_BOOKS, 3f),
 
     // --> CANDLES
@@ -68,19 +68,19 @@ public enum ProductionBuilding {
     CATTLE_FARM("cattle_farm", null, Goods.INTERMEDIARY_CATTLE, 1.25f),
     BUTCHERS_SHOP("butchers_shop", ImmutableMap.of(
             Goods.INTERMEDIARY_CATTLE, 2.5f,
-            Goods.INTERMEDIARY_SALT, 1.6f
+            Goods.INTERMEDIARY_SALT, 1.6f //@todo inaccurate
     ), Goods.FOOD_MEAT, 2.5f),
 
     // --> WINE
     VINEYARD("vineyard", null, Goods.INTERMEDIARY_GRAPES, 2/3f),
     IRON_ORE_MINE("iron_ore_mine", null, Goods.INTERMEDIARY_IRON_ORE, 2f),
     IRON_SMELTER("iron_smelter", ImmutableMap.of(
-            Goods.INTERMEDIARY_IRON_ORE, 1f,
-            Goods.INTERMEDIARY_COAL, 1f
+            Goods.INTERMEDIARY_IRON_ORE, IRON_ORE_MINE.getTonsPerMin(),
+            Goods.INTERMEDIARY_COAL, CHARCOAL_BURNER.getTonsPerMin()
     ), Goods.INTERMEDIARY_IRON, 2f),
     BARREL_COOPERAGE("barrel_cooperage", ImmutableMap.of(
             Goods.BUILDING_WOOD, 1f,
-            Goods.INTERMEDIARY_IRON, 0.5f
+            Goods.INTERMEDIARY_IRON, 1f
     ), Goods.INTERMEDIARY_BARREL, 2f),
     WINE_PRESS("wine_press", ImmutableMap.of(
             Goods.INTERMEDIARY_GRAPES, 2f,
@@ -145,7 +145,39 @@ public enum ProductionBuilding {
             Goods.INTERMEDIARY_SUGAR, SUGAR_MILL.getTonsPerMin()
     ),Goods.FOOD_MARZIPAN, 4f),
 
+    /**
+     * Other non-vital goods
+     */
+    ROPEYARD("rope_yard", ImmutableMap.of(
+            Goods.INTERMEDIARY_HEMP, HEMP_PLANTATION.getTonsPerMin()
+    ), Goods.ROPES, 2f),
+    TOOLMAKERS_WORKSHOP("toolmaker", ImmutableMap.of(
+            Goods.INTERMEDIARY_IRON, 1f
+    ), Goods.TOOLS, 2f),
+    CLAY_PIT("clay_pit", null, Goods.CLAY, 1.2f),
 
+    MOSAIC_WORKSHOP("mosaic_workshop", ImmutableMap.of(
+            Goods.INTERMEDIARY_QUARTZ, QUARTZ_QUARRY.getTonsPerMin() * 0.9f,
+            Goods.CLAY, CLAY_PIT.getTonsPerMin() * 2
+    ), Goods.MOSAICS, 2.4f),
+
+    FOREST_GLASSWORKS("forest_glassworks", null, Goods.POTASH, 2f),
+    GLASS_SMELTER("glass_smelter", ImmutableMap.of(
+            Goods.POTASH, 1f,
+            Goods.INTERMEDIARY_QUARTZ, 0.5f
+    ), Goods.GLASS, 1f),
+    WEAPONSMITH("weapon_smith", ImmutableMap.of(
+            Goods.INTERMEDIARY_IRON, IRON_SMELTER.getTonsPerMin()
+    ), Goods.WEAPONS, 2f),
+    WAR_MACHINES_WORKSHOP("war_machines_workshop", ImmutableMap.of(
+            Goods.BUILDING_WOOD, LUMBERJACKS_HUT.getTonsPerMin() * 2,
+            Goods.ROPES, 1.5f
+    ), Goods.WAR_MACHINES, 1.5f),
+    CANNON_FOUNDRY("cannon_foundry", ImmutableMap.of(
+            Goods.BUILDING_WOOD, LUMBERJACKS_HUT.getTonsPerMin() * 2,
+            Goods.INTERMEDIARY_IRON, 1.5f
+    ), Goods.CANNONS, 1f),
+    STONEMASONS_HUT("stonemasons_hut", null, Goods.STONE, 2f)
     ;
 
 
@@ -175,5 +207,9 @@ public enum ProductionBuilding {
 
     public float getTonsPerMin(int bonus) {
         return (0.25f * bonus * tonsPerMin) + tonsPerMin;
+    }
+
+    public float getTonsPerMin(int chains, int bonus) {
+        return getTonsPerMin(bonus) * chains;
     }
 }

@@ -85,4 +85,17 @@
     <string name="rank3">Stufe 3</string>
     <string name="action_info">Lizenzinformationen</string>
     <string name="app_desc">Berechnet die Bevölkerungsverteilung, Verbrauch von Gütern sowie Produktionsketten für das Spiel ANNO 1404.</string>
+    <string name="empty_productionchain">Leere Produktionskette</string>
+    <string name="intm_clay">Ton</string>
+    <string name="intm_potash">Pottasche</string>
+    <string name="other_goods">Sonstige</string>
+    <string name="res_cannons">Kanonen</string>
+    <string name="res_glass">Glas</string>
+    <string name="res_mosaic">Mosaik</string>
+    <string name="res_ropes">Seile</string>
+    <string name="res_tools">Werkzeug</string>
+    <string name="res_war_machines">Kriegsmaschinen</string>
+    <string name="res_weapons">Waffen</string>
+    <string name="res_stone">Stein</string>
+    <string name="advance_to">Aufstieg bis</string>
 </resources>

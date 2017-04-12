@@ -10,33 +10,30 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import de.ktran.anno1404warenrechner.R;
-import de.ktran.anno1404warenrechner.data.DataManager;
 
-public class ChainsFragment extends GameFragment {
-
-    @Inject
-    DataManager dataManager;
+public class MaterialOverviewFragment extends GameFragment {
 
     @Inject
-    ChainsAdapter chainsAdapter;
+    MaterialOverviewAdapter adapter;
 
-    @BindView(R.id.chainsList)
-    RecyclerView chainsRV;
+    @BindView(R.id.fragment_other_goods_overview_list)
+    RecyclerView listRV;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_chains;
+        return R.layout.fragment_other_goods_overview;
     }
 
     @Override
     protected void onViewCreated(View parent) {
         getGameActivity().component().inject(this);
 
-        registerLifecycle(chainsAdapter);
-        chainsRV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        chainsRV.setItemAnimator(new DefaultItemAnimator());
-        chainsRV.setAdapter(chainsAdapter);
-        chainsRV.addItemDecoration(new DividerItemDecoration(
+        registerLifecycle(adapter);
+        listRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        listRV.setItemAnimator(new DefaultItemAnimator());
+        listRV.setAdapter(adapter);
+
+        listRV.addItemDecoration(new DividerItemDecoration(
                 getContext(), DividerItemDecoration.VERTICAL
         ));
     }

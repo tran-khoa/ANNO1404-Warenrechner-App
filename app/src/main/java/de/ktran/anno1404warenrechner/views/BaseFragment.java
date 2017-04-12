@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import de.ktran.anno1404warenrechner.helpers.JavaCompat;
 
 public abstract class BaseFragment extends Fragment {
     private final List<HasLifecycle> objectsWithLifecycle = new ArrayList<>();
@@ -38,14 +39,13 @@ public abstract class BaseFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        objectsWithLifecycle.forEach(HasLifecycle::onStart);
+        JavaCompat.forEach(objectsWithLifecycle, HasLifecycle::onStart);
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        objectsWithLifecycle.forEach(HasLifecycle::onStop);
-
+        JavaCompat.forEach(objectsWithLifecycle, HasLifecycle::onStop);
     }
 }

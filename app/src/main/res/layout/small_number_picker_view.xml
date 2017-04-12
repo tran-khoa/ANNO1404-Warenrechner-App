@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:background="@null">
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="0dp"
+        android:textColor="@color/colorPrimary"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/decrement"
+        android:textStyle="bold"
+        android:text="—"/>
+
+    <TextView
+        android:layout_width="30dp"
+        android:background="@null"
+        android:layout_height="30dp"
+        android:text="1"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/material_black"
+        android:textSize="24sp"
+        android:focusable="false"
+        android:inputType="none"
+        android:id="@+id/display"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/decrement"
+        />
+    <TextView
+        android:text="30 TPM"
+        android:id="@+id/tpm"
+        android:textSize="12sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="0dp"
+        android:textSize="25sp"
+        android:textStyle="normal"
+        android:textColor="@color/colorPrimary"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/increment"
+        android:layout_toEndOf="@+id/display"
+        android:text="+"/>
+</RelativeLayout>

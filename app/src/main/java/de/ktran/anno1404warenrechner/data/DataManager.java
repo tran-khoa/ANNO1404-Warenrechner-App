@@ -6,11 +6,9 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -26,8 +24,9 @@ import de.ktran.anno1404warenrechner.event.ChainsResultEvent;
 import de.ktran.anno1404warenrechner.event.DataResponseEvent;
 import de.ktran.anno1404warenrechner.event.GameListResultEvent;
 import de.ktran.anno1404warenrechner.event.GameNameChangedEvent;
-import de.ktran.anno1404warenrechner.event.GameOpenedEvent;
+import de.ktran.anno1404warenrechner.event.MaterialResultsEvent;
 import de.ktran.anno1404warenrechner.event.PopulationResultEvent;
+import de.ktran.anno1404warenrechner.helpers.JavaCompat;
 
 @Singleton
 public class DataManager {
@@ -38,6 +37,7 @@ public class DataManager {
     private final EventBus bus;
 
     private final List<Game> games = new ArrayList<>();
+    private final List<ProductionBuilding> registeredGoods = new ArrayList<>();
     private static int last_id = 0;
 
     public DataManager(App app, SharedPreferences prefs, Gson gson, EventBus bus) {
@@ -45,8 +45,6 @@ public class DataManager {
         this.app = app;
         this.gson = gson;
         this.bus = bus;
-
-        bus.register(this);
 
         readFromStorage();
     }
@@ -60,53 +58,81 @@ public class DataManager {
         }
     }
 
+    private void commitChanges() {
+        final Set<String> saveString = new HashSet<>();
+        for (Game g : games) saveString.add(gson.toJson(g));
+
+        prefs.edit().putStringSet(app.getString(R.string.prefkey_data), saveString).apply();
+    }
+
     public Game getGameById(int id) {
         for (Game g : games) {
             if (g.getId() == id) return g;
         }
 
-        throw new IllegalStateException();
+        throw new IllegalStateException("Game with given id not found.");
     }
 
-    private void commitChanges() {
-        Set<String> saveString = new HashSet<>();
+    private void onPopulationChange(Game game) {
+        postResult(new PopulationResultEvent(game));
+        fetchNeedsChainsResults(game);
+        onGameMetaDataChanged();
+    }
 
-        for (Game g : games) {
-            saveString.add(gson.toJson(g));
-        }
+    private void onGameMetaDataChanged() {
+        postResult(new GameListResultEvent(this.getSortedList()));
+    }
 
-        prefs.edit().putStringSet(app.getString(R.string.prefkey_data), saveString).apply();
+    @Deprecated
+    private void onGameDataChanged(Game game) {
+        postResult(new PopulationResultEvent(game));
+        fetchNeedsChainsResults(game);
+        JavaCompat.forEach(registeredGoods, building -> DataManager.this.fetchChainsDetailResults(
+                building.getProduces(), game)); //@todo implement
+        onGameMetaDataChanged();
+    }
+
+    private void onProductionChainChanged(Game game, Goods goods) {
+        if (goods.getType() == Goods.Type.NEEDS || goods.getType() == Goods.Type.INTERMEDIARY)
+            fetchNeedsChainsResults(game);
 
     }
 
     /**
      * Sets population count. Negative amount implies that the given amount concerns built houses
      * @param game Game
-     * @param p Population type
+     * @param p PopulationType type
      * @param amount Amount (signed)
      */
-    public void setPopulation(Game game, Population p, int amount) {
+    public void setPopulation(Game game, PopulationType p, int amount) {
         if (amount < 0) {
-            amount = -amount;
-            amount = amount * p.houseSize;
+            game.population().setHouseCount(p, Math.abs(amount));
+        } else {
+            game.population().setPopulationCount(p, amount);
         }
-
-        game.setPopulation(p, amount);
         commitChanges();
 
-        onGameDataChanged(game);
+        onPopulationChange(game);
     }
 
+    //@TODO make void
     public boolean setBonus(Game game, ProductionBuilding building, int bonus) {
-        if (game.bonus.get(building) == bonus) {
-            return false;
-        } else {
-            game.bonus.put(building, bonus);
-            commitChanges();
+        if (!game.setBonus(building, bonus)) return false;
 
-            onGameDataChanged(game);
-            return true;
-        }
+        commitChanges();
+        onProductionChainChanged(game, building.getProduces());
+        if (Goods.isMaterial(building.getProduces())) postResult(new MaterialResultsEvent(game));
+
+        return true;
+    }
+
+    public void setMaterialProduction(Game game, ProductionBuilding building, int value) {
+        if (game.getMaterialProductionCount(building) == value) return;
+
+        game.setOtherGoods(building, value);
+        commitChanges();
+
+        postResult(new MaterialResultsEvent(game));
     }
 
     public void setBeggarPrince(Game game, int rank) {
@@ -151,7 +177,7 @@ public class DataManager {
     }
 
     public void gameOpened(Game game) {
-        game.setLastOpened(new Date());
+        game.gameTouched();
         commitChanges();
 
         onGameMetaDataChanged();
@@ -175,34 +201,22 @@ public class DataManager {
         return res;
     }
 
-    public void fetchChainsResults(@NonNull final Game game) {
+    public void fetchNeedsChainsResults(@NonNull final Game game) {
         Task.doAsync(() -> {
             final Logic logic = new Logic(game);
             postResult(
-                    new ChainsResultEvent(game, logic.calculateChains())
+                    new ChainsResultEvent(game, logic.calculateAllNeedsChains())
             );
         });
     }
 
-    public void fetchChainsDetailResults(@NonNull final ProductionChain chain, @NonNull Game game) {
+
+    public void fetchChainsDetailResults(@NonNull final Goods goods, @NonNull Game game) {
         Task.doAsync(() -> {
             final Logic logic = new Logic(game);
 
-            final List<ProductionChain> chains = logic.calculateChains();
-            ProductionChain resChain = null;
-            for (ProductionChain c : chains) {
-                if (c.getBuilding().equals(chain.getBuilding())) {
-                    resChain = c;
-                    break;
-                }
-            }
-
-            if (resChain == null) {
-                throw new IllegalStateException("Chain does not exist");
-            }
-
             postResult(
-                    new ChainsDetailResultEvent(logic.calculateChainDependencies(resChain), resChain)
+                    new ChainsDetailResultEvent(logic.calculateChainWithDependencies(goods), goods)
             );
         });
     }
@@ -211,14 +225,13 @@ public class DataManager {
         Task.doAsync(() -> postResult(new GameListResultEvent(getSortedList())));
     }
 
-
-    public void changeTotalCountOccidental(final Game game, final int totalCount) {
+    public void changeTotalCountOccidental(final Game game, final int totalCount, final int maxPop) {
         Task.doAsync(() -> {
             Logic logic = new Logic(game);
-            Map<Population, Integer> res = logic.calculateAscensionRightsOccidental(Math.abs(totalCount));
+            Map<PopulationType, Integer> res = logic.calculateAscensionRightsOccidental(Math.abs(totalCount), maxPop);
 
-            for (Map.Entry<Population, Integer> e : res.entrySet()) {
-                game.setPopulation(e.getKey(), e.getValue() * e.getKey().houseSize);
+            for (Map.Entry<PopulationType, Integer> e : res.entrySet()) {
+                game.population().setHouseCount(e.getKey(), e.getValue());
             }
 
             commitChanges();
@@ -226,13 +239,13 @@ public class DataManager {
         });
     }
 
-    public void changeTotalCountOriental(final Game game, final int totalCount) {
+    public void changeTotalCountOriental(final Game game, final int totalCount, final int maxPop) {
         Task.doAsync(() -> {
             Logic logic = new Logic(game);
-            Map<Population, Integer> res = logic.calculateAscensionRightsOriental(Math.abs(totalCount));
+            Map<PopulationType, Integer> res = logic.calculateAscensionRightsOriental(Math.abs(totalCount), maxPop);
 
-            for (Map.Entry<Population, Integer> e : res.entrySet()) {
-                game.setPopulation(e.getKey(), e.getValue() * e.getKey().houseSize);
+            for (Map.Entry<PopulationType, Integer> e : res.entrySet()) {
+                game.population().setHouseCount(e.getKey(), e.getValue());
             }
 
             commitChanges();
@@ -244,20 +257,11 @@ public class DataManager {
         bus.postSticky(event);
     }
 
-    private void onGameDataChanged(Game game) {
-        postResult(new PopulationResultEvent(game));
-        fetchChainsResults(game);
-        onGameMetaDataChanged();
+    public void registerUpdate(ProductionBuilding chain) {
+        registeredGoods.add(chain);
     }
 
-    private void onGameMetaDataChanged() {
-        postResult(new GameListResultEvent(this.getSortedList()));
-    }
-
-    @Subscribe
-    @SuppressWarnings("unused")
-    public void onMessageEvent(GameOpenedEvent event) {
-        event.getGame().setLastOpened(new Date());
-        commitChanges();
+    public void unregisterUpdate(ProductionBuilding chain) {
+        registeredGoods.remove(chain);
     }
 }
